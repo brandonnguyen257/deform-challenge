@@ -1,32 +1,25 @@
 'use client'
-import UnauthenticatedUserWarning from "@/components/UnauthenticatedUserWarning";
-import { getAccessToPage, isUserLoggedInWithWallet } from "@/services/wallet/WalletService";
-import { useEffect, useState } from "react";
+import UnauthenticatedUserWarning from "@/components/Warnings/UnauthenticatedUserWarning";
+import UnauthorizedContractAccess from "@/components/Warnings/UnauthroizedContractAccess";
+import { getCurrentWalletAddress, hasAccessToPage } from "@/services/wallet/WalletService";
 
-export default function ArtistPage({
+const DEFORM_TEST_TOKEN_CONTRACT = '0xa87D30B1d97523B8AeAA170A57126fa1C1d46196';
+export default async function ArtistPage({
     params
 } : {
     params: {pageId: string}}) {
-      if (!isUserLoggedInWithWallet()) {
-        return <UnauthenticatedUserWarning/>
+
+    const walletAddress = getCurrentWalletAddress();
+
+    if (!walletAddress) {
+      return <UnauthenticatedUserWarning/>
     }
 
-      const [hasAccess, setHasAccess] = useState(false);
-
-
-      useEffect(() => {
-        const verifyAccess = async () => {
-          const res = await getAccessToPage();
-          setHasAccess(res.hasAccess);
-        };
-    
-        verifyAccess();
-      }, []); 
-
-      //TODO: create a component that takes in NFT contract id and display an unauthorized page
-      if (!hasAccess) {
-        return <p>You do not have access to this page.</p>;
-      }
+    const hasAccess = hasAccessToPage(DEFORM_TEST_TOKEN_CONTRACT);
+    console.log(hasAccess);
+    if (!hasAccess) {
+      return <UnauthorizedContractAccess contractToken={DEFORM_TEST_TOKEN_CONTRACT}/>;
+    }
 
     const onButtonClick = async () => {
         // const res = await callApi();

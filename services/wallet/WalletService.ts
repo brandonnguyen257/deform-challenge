@@ -1,4 +1,4 @@
-import { Alchemy, AlchemySettings, Network } from "alchemy-sdk";
+import { Alchemy, AlchemySettings, Network, OwnedNftsResponse } from "alchemy-sdk";
 import { BrowserProvider } from "ethers";
 
 const settings: AlchemySettings = {
@@ -26,22 +26,30 @@ export const getCurrentWalletAddress = async () =>  {
 }
 
 export const getNftsForOwner = async (walletAddress: string) => {
-  console.log("getting nfts for owner ", walletAddress);
-  const nftsForOwner = await alchemy.nft.getNftsForOwner(walletAddress);
-  console.log(nftsForOwner);
+  const nftsForOwner: OwnedNftsResponse = await alchemy.nft.getNftsForOwner(walletAddress);
+  return nftsForOwner;
 }
 
 export const getContractMetadata = async (contractAddress: string) => {
-  console.log("getting contract metadata for ", "0xa87D30B1d97523B8AeAA170A57126fa1C1d46196");
   const nftMetadata = await alchemy.nft.getContractMetadata("0xa87D30B1d97523B8AeAA170A57126fa1C1d46196");
-  console.log(nftMetadata);
+  return nftMetadata;
+}
 
+export const hasAccessToPage = async (contractAddress: string) => {
+  const walletAddress = await getAddressOfCurrentUser();
+  if (!walletAddress) {
+    return false;
+  }
+  const nftsForOwner:OwnedNftsResponse = await getNftsForOwner(walletAddress);
+  console.log(nftsForOwner.ownedNfts);
+  return nftsForOwner.ownedNfts.some(nft => nft.contract.address === contractAddress);
 }
 
 const getAddressOfCurrentUser = async () => {
   try{
     const provider = new BrowserProvider((window as any).ethereum);
     const signer = await provider.getSigner();
+
     return signer.address;
   } catch (error) {
     return null;

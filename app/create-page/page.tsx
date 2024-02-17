@@ -1,4 +1,4 @@
-import UnauthenticatedUserWarning from "@/components/UnauthenticatedUserWarning";
+import UnauthenticatedUserWarning from "@/components/Warnings/UnauthenticatedUserWarning";
 import { isUserLoggedInWithWallet } from "@/services/wallet/WalletService";
 
 export default function CreatePage() {
