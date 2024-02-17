@@ -1,35 +1,43 @@
 'use client'
-import UnauthenticatedUserWarning from "@/components/Warnings/UnauthenticatedUserWarning";
-import UnauthorizedContractAccess from "@/components/Warnings/UnauthroizedContractAccess";
-import { getCurrentWalletAddress, hasAccessToPage } from "@/services/wallet/WalletService";
+import { getCurrentWalletAddress, hasAccessToPage } from '@/services/wallet/WalletService';
+import { usePathname, useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 
-const DEFORM_TEST_TOKEN_CONTRACT = '0xa87D30B1d97523B8AeAA170A57126fa1C1d46196';
-export default async function ArtistPage({
-    params
-} : {
-    params: {pageId: string}}) {
+const Page = () => {
+  const router = usePathname();
 
-    const walletAddress = getCurrentWalletAddress();
 
-    if (!walletAddress) {
-      return <UnauthenticatedUserWarning/>
-    }
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>();
+  const [walletAddress, setWalletAddress] = useState<string|null>();
 
-    const hasAccess = hasAccessToPage(DEFORM_TEST_TOKEN_CONTRACT);
-    console.log(hasAccess);
-    if (!hasAccess) {
-      return <UnauthorizedContractAccess contractToken={DEFORM_TEST_TOKEN_CONTRACT}/>;
-    }
+  const [hasAccess, setHasAccess] = useState<boolean>();
 
-    const onButtonClick = async () => {
-        // const res = await callApi();
-        console.log('onButtonClick');
-    }
+  useEffect(() => {
+    // Simulate fetching user authentication status
+    const fetchUserStatus = async () => {
+      // Your logic to determine if user is logged in
+      const walletAddress = await getCurrentWalletAddress();
+      // Your logic to determine if user has access to page
+      const hasAccess = await hasAccessToPage("0xa87D30B1d97523B8AeAA170A57126fa1C1d46196"); // Example: Assume user has access to page
 
-    return (
-        <div>
-            <h1>Hello Artist Page {params.pageId}</h1>
-          <button onClick={onButtonClick}>Call API</button>
-        </div>
-      );
-}
+      setWalletAddress(walletAddress);
+      setIsLoggedIn(walletAddress !== null);
+      setHasAccess(hasAccess);
+    };
+
+    fetchUserStatus();
+  }, []);
+  
+  if(!isLoggedIn) {
+    return <div>NOT LOGGED IN</div>
+  }
+  if(!hasAccess) {
+    return <div>NO ACCESS</div>
+  }
+  return (
+    <div>ARTIST PAGE</div>
+
+  );
+};
+
+export default Page;
