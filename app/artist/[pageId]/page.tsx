@@ -1,41 +1,56 @@
 'use client'
+import { getTestData } from '@/services/database/demo';
+import { TestModel } from '@/services/model/TestModel';
 import { getCurrentWalletAddress, hasAccessToPage } from '@/services/wallet/WalletService';
 import { usePathname, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 const Page = () => {
   const router = usePathname();
-
+  const page_id:number = parseInt(router.split('/').pop() || '', 10);
 
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>();
   const [walletAddress, setWalletAddress] = useState<string|null>();
 
   const [hasAccess, setHasAccess] = useState<boolean>();
+  const [testData, setTestData] = useState<TestModel>();
+  const [isPageLoading, setIsPageLoading] = useState<boolean>(true);
 
   useEffect(() => {
     // Simulate fetching user authentication status
     const fetchUserStatus = async () => {
-      // Your logic to determine if user is logged in
+      setIsPageLoading(true);
       const walletAddress = await getCurrentWalletAddress();
-      // Your logic to determine if user has access to page
-      const hasAccess = await hasAccessToPage("0xa87D30B1d97523B8AeAA170A57126fa1C1d46196"); // Example: Assume user has access to page
-
       setWalletAddress(walletAddress);
       setIsLoggedIn(walletAddress !== null);
+
+      const pageData = await getTestData(page_id);
+      setTestData(pageData);
+
+      const hasAccess = await hasAccessToPage(pageData?.token_contract);
       setHasAccess(hasAccess);
+      setIsPageLoading(false);
     };
 
     fetchUserStatus();
   }, []);
+
   
-  if(!isLoggedIn) {
+  if(!isPageLoading && !isLoggedIn) {
     return <div>NOT LOGGED IN</div>
   }
-  if(!hasAccess) {
+  if(!isPageLoading && !hasAccess) {
     return <div>NO ACCESS</div>
   }
+  if(testData === null) {
+    return <div>Page does not exist</div>
+  }
+  if(isPageLoading) {
+    return <div>LOADING</div>
+  }
+
   return (
-    <div>ARTIST PAGE</div>
+    <div>ARTIST PAGE {JSON.stringify(testData, null, 2)}</div>
 
   );
 };

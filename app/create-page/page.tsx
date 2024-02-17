@@ -36,8 +36,6 @@ export default function CreatePage() {
 
     console.log("submitting");
     await insertTestData(data);
-    
-    // await yourServiceFunction(data);
   };
 
 

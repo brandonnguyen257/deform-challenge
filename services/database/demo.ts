@@ -7,8 +7,9 @@ export const getTestData = async (pageId: number) => {
     const { data: pageData } = await supabase
     .from("test")
     .select()
-    .eq('page_id', pageId);
-    console.log(pageData);
+    .eq('page_id', pageId)
+    .maybeSingle();
+    return pageData as TestModel;
 }
 
 

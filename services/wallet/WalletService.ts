@@ -36,6 +36,10 @@ export const getContractMetadata = async (contractAddress: string) => {
 }
 
 export const hasAccessToPage = async (contractAddress: string) => {
+  if(!contractAddress) {
+    return false;
+  }
+  console.log("checking access to page" + contractAddress);
   const walletAddress = await getAddressOfCurrentUser();
   if (!walletAddress) {
     return false;
