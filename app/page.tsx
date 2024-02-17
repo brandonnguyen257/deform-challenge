@@ -4,7 +4,7 @@ import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import ConnectWallet from "@/components/HomePage/ConnectWallet";
 import SessionInformation from "@/components/HomePage/SessionInformation";
-import { useState } from "react";
+import CurrentNfts from "@/components/HomePage/CurrentNfts";
 
 
 export default async function Index() {
@@ -34,7 +34,16 @@ export default async function Index() {
     <br/>
     <ConnectWallet/>
     {/* <div><button id='siweBtn'>Sign-in with Ethereum</button></div> */}
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+
     <SessionInformation/>
+    <br/>
+
+    <CurrentNfts/>
     </div>
     
   );

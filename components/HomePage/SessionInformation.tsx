@@ -1,10 +1,11 @@
 'use client'
 
 import { getCurrentWalletAddress } from "@/services/wallet/WalletService";
-export default function SessionInformation() {
+export default async function SessionInformation() {
 
     const handleClick = async () => {
         const currentWalletAddress = await getCurrentWalletAddress();
+
         console.log(currentWalletAddress);
     };
 
