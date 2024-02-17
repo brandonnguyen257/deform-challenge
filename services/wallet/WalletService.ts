@@ -6,3 +6,7 @@ export const getAccessToPage = async () => {
       console.error('Error:', error);
     }
 };
+
+export const isUserLoggedInWithWallet = (): boolean => {
+    return false;
+}

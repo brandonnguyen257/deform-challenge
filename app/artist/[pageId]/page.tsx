@@ -1,11 +1,15 @@
 'use client'
-import { getAccessToPage } from "@/services/wallet/WalletService";
+import UnauthenticatedUserWarning from "@/components/UnauthenticatedUserWarning";
+import { getAccessToPage, isUserLoggedInWithWallet } from "@/services/wallet/WalletService";
 import { useEffect, useState } from "react";
 
 export default function ArtistPage({
     params
 } : {
     params: {pageId: string}}) {
+      if (!isUserLoggedInWithWallet()) {
+        return <UnauthenticatedUserWarning/>
+    }
 
       const [hasAccess, setHasAccess] = useState(false);
 
