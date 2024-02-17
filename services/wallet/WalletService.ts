@@ -14,7 +14,13 @@ export const isUserLoggedInWithWallet = (): boolean => {
 }
 
 export const getCurrentWalletAddress = async () =>  {
+  try{
     const provider = new BrowserProvider((window as any).ethereum);
     const signer = await provider.getSigner();
     return signer.address;
+  } catch (error) {
+    console.error('Error:', error);
+    return null;
+  }
+
 }
