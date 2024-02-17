@@ -5,6 +5,8 @@ import ConnectSupabaseSteps from "@/components/ConnectSupabaseSteps";
 import SignUpUserSteps from "@/components/SignUpUserSteps";
 import Header from "@/components/Header";
 import Link from "next/link";
+import ConnectWallet from "@/components/ConnectWallet";
+
 
 export default async function Index() {
   const canInitSupabaseClient = () => {
@@ -25,6 +27,13 @@ export default async function Index() {
     <Link href="/artist-gallery">Artist Gallery</Link>
     <br/>
     <Link href="/create-page">Create Artist Page</Link>
-    </div>
+    <br/>
+    <br/>
+    <br/>
+    <div><ConnectWallet/></div>
+    <div><button id='siweBtn'>Sign-in with Ethereum</button></div>
+    <div><button id="infoBtn">Get session information</button></div>
+      </div>
+    
   );
 }
