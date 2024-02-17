@@ -1,8 +1,10 @@
 'use client'
 import { BrowserProvider } from 'ethers';
 
+
+
 export default function ConnectWallet() {
-    const provider = new BrowserProvider(window.ethereum);
+    const provider = new BrowserProvider((window as any).ethereum);
 
     const handleClick = () => {
         console.log("Connecting To Wallet");

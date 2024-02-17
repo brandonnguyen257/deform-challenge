@@ -1,3 +1,5 @@
+import { BrowserProvider } from "ethers";
+
 export const getAccessToPage = async () => {
     try {
       const res = await fetch('/wallet/access');
@@ -9,4 +11,10 @@ export const getAccessToPage = async () => {
 
 export const isUserLoggedInWithWallet = (): boolean => {
     return false;
+}
+
+export const getCurrentWalletAddress = async () =>  {
+    const provider = new BrowserProvider((window as any).ethereum);
+    const signer = await provider.getSigner();
+    return signer.address;
 }
