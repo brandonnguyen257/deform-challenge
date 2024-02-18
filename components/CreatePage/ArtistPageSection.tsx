@@ -3,14 +3,15 @@
 import { ArtistPage } from '@/services/model/Models';
 import { useEffect } from 'react';
 
-interface ArtistPageConfigurationsProps {
+interface ArtistPageSectionProps {
 	artistPage: ArtistPage;
 	setArtistPage: (artistPage: ArtistPage) => void;
 }
 
-export const ArtistPageConfigurations: React.FC<
-	ArtistPageConfigurationsProps
-> = ({ artistPage, setArtistPage }) => {
+export const ArtistPageSection: React.FC<ArtistPageSectionProps> = ({
+	artistPage,
+	setArtistPage
+}) => {
 	useEffect(() => {
 		setArtistPage(artistPage);
 	}, [artistPage]);

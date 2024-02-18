@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation';
 import Loading from '@/components/Loading';
 
 import { useEffect, useState } from 'react';
-import { ArtistPageConfigurations } from '@/components/CreatePage/ArtistPageConfigurations';
+import { ArtistPageSection } from '@/components/CreatePage/ArtistPageSection';
 import { UnreleasedMusicSection } from '@/components/CreatePage/UnreleasedMusicSection';
 import { ConcertPresaleCodeSection } from '@/components/CreatePage/ConcertPresaleCodeSection';
 
@@ -72,8 +72,8 @@ export default function CreatePage() {
 		};
 		console.log(artistPageData);
 
-		await insertArtistPageData(artistPageData);
-		router.push('/artist-gallery');
+		// await insertArtistPageData(artistPageData);
+		// router.push('/artist-gallery');
 	};
 
 	if (!isLoggedIn) {
@@ -83,7 +83,7 @@ export default function CreatePage() {
 	return (
 		<form onSubmit={handleSubmit}>
 			<br />
-			<ArtistPageConfigurations
+			<ArtistPageSection
 				artistPage={artistPage}
 				setArtistPage={setArtistPage}
 			/>
