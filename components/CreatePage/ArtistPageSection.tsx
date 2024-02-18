@@ -1,6 +1,7 @@
 'use client';
 
 import { ArtistPage } from '@/services/model/Models';
+import { Box, TextField, Typography } from '@mui/material';
 import { useEffect } from 'react';
 
 interface ArtistPageSectionProps {
@@ -23,31 +24,90 @@ export const ArtistPageSection: React.FC<ArtistPageSectionProps> = ({
 
 	return (
 		<>
-			<div>Artist Page Configurations</div>
-			<label>
-				tokenContract:
-				<input
-					type="text"
+			<Box
+				component="form"
+				sx={{
+					'& > :not(style)': { m: 1, width: '25ch' }
+				}}
+				noValidate
+				autoComplete="off"
+			>
+				<Typography
+					variant="h4"
+					component="div"
+					sx={{ flexGrow: 1, color: 'white' }}
+				>
+					Artist Page Section
+				</Typography>
+				<TextField
+					required
+					id="outlined-basic"
+					label="Token Contract"
+					variant="outlined"
 					value={artistPage.token_contract}
 					onChange={(e) =>
 						handleInputChange('token_contract', e.target.value)
 					}
-					style={{ color: 'black' }}
+					InputProps={{
+						style: {
+							color: 'white'
+						}
+					}}
+					InputLabelProps={{
+						style: {
+							color: 'white'
+						}
+					}}
+					sx={{
+						'& .MuiOutlinedInput-root': {
+							'& fieldset': {
+								borderColor: 'white',
+								borderWidth: '2px'
+							},
+							'&:hover fieldset': {
+								borderColor: 'white'
+							},
+							'&.Mui-focused fieldset': {
+								borderColor: 'white'
+							}
+						}
+					}}
 				/>
-			</label>
-			<br />
-			<label>
-				Artist Page Name:
-				<input
-					type="text"
+				<TextField
+					required
+					id="outlined-basic"
+					label="Artist Page Name"
+					variant="outlined"
 					value={artistPage.page_name}
 					onChange={(e) =>
 						handleInputChange('page_name', e.target.value)
 					}
-					style={{ color: 'black' }}
+					InputProps={{
+						style: {
+							color: 'white'
+						}
+					}}
+					InputLabelProps={{
+						style: {
+							color: 'white'
+						}
+					}}
+					sx={{
+						'& .MuiOutlinedInput-root': {
+							'& fieldset': {
+								borderColor: 'white',
+								borderWidth: '2px'
+							},
+							'&:hover fieldset': {
+								borderColor: 'white'
+							},
+							'&.Mui-focused fieldset': {
+								borderColor: 'white'
+							}
+						}
+					}}
 				/>
-			</label>
-			<br />
+			</Box>
 		</>
 	);
 };

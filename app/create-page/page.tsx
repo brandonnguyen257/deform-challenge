@@ -15,6 +15,7 @@ import { useEffect, useState } from 'react';
 import { ArtistPageSection } from '@/components/CreatePage/ArtistPageSection';
 import { UnreleasedMusicSection } from '@/components/CreatePage/UnreleasedMusicSection';
 import { ConcertPresaleCodeSection } from '@/components/CreatePage/ConcertPresaleCodeSection';
+import { Box } from '@mui/material';
 
 export default function CreatePage() {
 	const router = useRouter();
@@ -72,8 +73,8 @@ export default function CreatePage() {
 		};
 		console.log(artistPageData);
 
-		// await insertArtistPageData(artistPageData);
-		// router.push('/artist-gallery');
+		await insertArtistPageData(artistPageData);
+		router.push('/artist-gallery');
 	};
 
 	if (!isLoggedIn) {
@@ -81,7 +82,15 @@ export default function CreatePage() {
 	}
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<Box
+			component="form"
+			onSubmit={handleSubmit}
+			sx={{
+				backgroundColor: '#313131',
+				padding: 2, // add some padding
+				borderRadius: 1 // add some border radius
+			}}
+		>
 			<br />
 			<ArtistPageSection
 				artistPage={artistPage}
@@ -100,6 +109,6 @@ export default function CreatePage() {
 			/>
 			<br />
 			<button type="submit">Submit</button>
-		</form>
+		</Box>
 	);
 }
