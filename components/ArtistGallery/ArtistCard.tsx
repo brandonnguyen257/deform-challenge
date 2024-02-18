@@ -68,6 +68,20 @@ export const ArtistCard = ({ artistPage }: ArtistCardProps) => {
 							Active Since: {displayDate}
 						</Typography>
 					</Box>
+					<Typography
+						variant="caption"
+						component="div"
+						sx={{ color: 'white' }}
+					>
+						Artist Wallet: {artistPage.wallet_address}
+					</Typography>
+					<Typography
+						variant="caption"
+						component="div"
+						sx={{ color: 'white' }}
+					>
+						Contract: {artistPage.token_contract}
+					</Typography>
 				</CardContent>
 				<Box
 					sx={{
