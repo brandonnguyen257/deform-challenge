@@ -89,7 +89,8 @@ export const getArtistPageData = async (pageId: number) => {
 			id: data.id,
 			wallet_address: data.wallet_address,
 			token_contract: data.token_contract,
-			created_at: data.created_at
+			created_at: data.created_at,
+            page_name: data.page_name,
 		},
 		unreleasedMusic: data.unreleased_music,
 		concertPresaleCode: data.concert_presale_code

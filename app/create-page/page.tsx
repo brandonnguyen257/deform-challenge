@@ -7,10 +7,13 @@ import {
 	UnreleasedMusic
 } from '@/services/model/Models';
 import { getCurrentWalletAddress } from '@/services/wallet/WalletService';
+import { useRouter } from 'next/navigation';
 
 import { useEffect, useState } from 'react';
 
 export default function CreatePage() {
+	const router = useRouter();
+
 	const [isLoggedIn, setIsLoggedIn] = useState<boolean>();
 	const [walletAddress, setWalletAddress] = useState<string | null>();
 
@@ -20,6 +23,7 @@ export default function CreatePage() {
 	const [address, setAddress] = useState('');
 	const [ticketLink, setTicketLink] = useState('');
 	const [songName, setSongName] = useState('');
+	const [artistPageName, setArtistPageName] = useState('');
 
 	useEffect(() => {
 		const fetchUserStatus = async () => {
@@ -32,10 +36,12 @@ export default function CreatePage() {
 	}, []);
 
 	const handleSubmit = async (event: React.FormEvent) => {
+		event.preventDefault();
 		const artistPage: ArtistPage = {
 			//TODO add validation to verify non null and non empty
 			wallet_address: walletAddress ? walletAddress : '',
-			token_contract: tokenContract
+			token_contract: tokenContract,
+			page_name: artistPageName
 		};
 
 		const unreleasedMusic: UnreleasedMusic = {
@@ -55,7 +61,8 @@ export default function CreatePage() {
 			concertPresaleCode: concertPresaleCode
 		};
 
-		await insertArtistPageData(artistPageData);
+		// await insertArtistPageData(artistPageData);
+		router.push('/artist-gallery');
 	};
 
 	if (!isLoggedIn) {
@@ -74,6 +81,18 @@ export default function CreatePage() {
 					style={{ color: 'black' }}
 				/>
 			</label>
+			<br />
+			<label>
+				Artist Page Name:
+				<input
+					type="text"
+					value={artistPageName}
+					onChange={(e) => setArtistPageName(e.target.value)}
+					style={{ color: 'black' }}
+				/>
+			</label>
+			<br />
+			<br />
 			<div>Unreleased Music</div>
 			<label>
 				songLink:
@@ -94,6 +113,7 @@ export default function CreatePage() {
 					onChange={(e) => setSongName(e.target.value)}
 				/>
 			</label>
+			<br />
 			<br />
 			<div>Presale Codes</div>
 			<label>
@@ -126,6 +146,7 @@ export default function CreatePage() {
 				/>
 			</label>
 
+			<br />
 			<br />
 			<button type="submit">Submit</button>
 		</form>
