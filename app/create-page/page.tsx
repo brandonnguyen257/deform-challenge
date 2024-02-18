@@ -14,6 +14,7 @@ import Loading from '@/components/Loading';
 import { useEffect, useState } from 'react';
 import { ArtistPageConfigurations } from '@/components/CreatePage/ArtistPageConfigurations';
 import { UnreleasedMusicSection } from '@/components/CreatePage/UnreleasedMusicSection';
+import { ConcertPresaleCodeSection } from '@/components/CreatePage/ConcertPresaleCodeSection';
 
 export default function CreatePage() {
 	const router = useRouter();
@@ -36,6 +37,13 @@ export default function CreatePage() {
 		song_link: ''
 	});
 
+	const [concertPresaleCode, setConcertPresaleCode] =
+		useState<ConcertPresaleCode>({
+			presale_code: '',
+			venue: '',
+			ticket_link: ''
+		});
+
 	useEffect(() => {
 		const fetchUserStatus = async () => {
 			const walletAddress = await getCurrentWalletAddress();
@@ -56,12 +64,6 @@ export default function CreatePage() {
 	}
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
-
-		const concertPresaleCode: ConcertPresaleCode = {
-			presale_code: presaleCode,
-			venue: venue,
-			ticket_link: ticketLink
-		};
 
 		const artistPageData: ArtistPageData = {
 			artistPage: artistPage,
@@ -92,38 +94,10 @@ export default function CreatePage() {
 			/>
 
 			<br />
-			<div>Presale Codes</div>
-			<label>
-				presaleCode:
-				<input
-					type="text"
-					value={presaleCode}
-					style={{ color: 'black' }}
-					onChange={(e) => setPresaleCode(e.target.value)}
-				/>
-			</label>
-			<br />
-			<label>
-				Venue:
-				<input
-					type="text"
-					value={venue}
-					style={{ color: 'black' }}
-					onChange={(e) => setVenue(e.target.value)}
-				/>
-			</label>
-			<br />
-			<label>
-				Ticket Link:
-				<input
-					type="text"
-					value={ticketLink}
-					style={{ color: 'black' }}
-					onChange={(e) => setTicketLink(e.target.value)}
-				/>
-			</label>
-
-			<br />
+			<ConcertPresaleCodeSection
+				concertPresaleCode={concertPresaleCode}
+				setConcertPresaleCode={setConcertPresaleCode}
+			/>
 			<br />
 			<button type="submit">Submit</button>
 		</form>
