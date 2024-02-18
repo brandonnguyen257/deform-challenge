@@ -27,7 +27,7 @@ const ArtistCardSx = {
 		transform: 'scale(1.05)',
 		boxShadow: '0 0 50px rgba(255, 255, 255, 0.5)'
 	},
-	transition: 'transform 0.3s ease-in-out, boxShadow 0.3s ease-in-out'
+	transition: 'transform 0.2s ease-in-out, boxShadow 0.2s ease-in-out'
 };
 export const ArtistCard = ({ artistPage }: ArtistCardProps) => {
 	const router = useRouter();
