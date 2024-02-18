@@ -1,4 +1,5 @@
 'use client';
+import UnauthorizedContractAccess from '@/components/Warnings/UnauthroizedContractAccess';
 import { getArtistPageData } from '@/services/database/dao';
 import { ArtistPageData } from '@/services/model/Models';
 import {
@@ -50,7 +51,7 @@ const Page = () => {
 		return <div>NOT LOGGED IN</div>;
 	}
 	if (!isOwner && !isPageLoading && !hasAccess) {
-		return <div>NO ACCESS</div>;
+		return <UnauthorizedContractAccess contractToken={artistPageData?.artistPage.token_contract}/>
 	}
 	if (artistPageData === null) {
 		return <div>Page does not exist</div>;

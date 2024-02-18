@@ -35,10 +35,11 @@ export const getNftsForOwner = async (walletAddress: string) => {
 	return nftsForOwner;
 };
 
-export const getContractMetadata = async (contractAddress: string) => {
-	const nftMetadata = await alchemy.nft.getContractMetadata(
-		'0xa87D30B1d97523B8AeAA170A57126fa1C1d46196'
-	);
+export const getContractMetadata = async (contractAddress: string|undefined) => {
+  if(!contractAddress) {
+    return;
+  }
+	const nftMetadata = await alchemy.nft.getContractMetadata(contractAddress);
 	return nftMetadata;
 };
 
