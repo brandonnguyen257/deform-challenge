@@ -58,28 +58,33 @@ const Page = () => {
 	if (isPageLoading) {
 		return <div>LOADING</div>;
 	}
-
 	const displayData = (data, prefix = '') => {
 		return Object.entries(data).map(([key, value]) => {
+			const formattedKey = key
+				.split('_')
+				.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+				.join(' ');
+
 			if (typeof value === 'object' && value !== null) {
 				if (Array.isArray(value)) {
 					return value.map((item, index) =>
-						displayData(item, `${prefix}${key}[${index}].`)
+						displayData(item, `${formattedKey} ${index + 1} `)
 					);
 				} else {
-					return displayData(value, `${prefix}${key}.`);
+					return displayData(value, `${formattedKey} `);
 				}
 			} else {
 				return (
 					<React.Fragment key={prefix + key}>
 						{prefix}
-						{key}: {String(value)}
+						{formattedKey}: {String(value)}
 						<br />
 					</React.Fragment>
 				);
 			}
 		});
 	};
+
 	return <div>{displayData(artistPageData)}</div>;
 };
 
