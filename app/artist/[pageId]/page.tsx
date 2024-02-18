@@ -59,7 +59,28 @@ const Page = () => {
 		return <div>LOADING</div>;
 	}
 
-	return <div>ARTIST PAGE {JSON.stringify(artistPageData, null, 2)}</div>;
+	const displayData = (data, prefix = '') => {
+		return Object.entries(data).map(([key, value]) => {
+			if (typeof value === 'object' && value !== null) {
+				if (Array.isArray(value)) {
+					return value.map((item, index) =>
+						displayData(item, `${prefix}${key}[${index}].`)
+					);
+				} else {
+					return displayData(value, `${prefix}${key}.`);
+				}
+			} else {
+				return (
+					<React.Fragment key={prefix + key}>
+						{prefix}
+						{key}: {String(value)}
+						<br />
+					</React.Fragment>
+				);
+			}
+		});
+	};
+	return <div>{displayData(artistPageData)}</div>;
 };
 
 export default Page;
