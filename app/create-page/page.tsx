@@ -9,11 +9,13 @@ import {
 } from '@/services/model/Models';
 import { getCurrentWalletAddress } from '@/services/wallet/WalletService';
 import { useRouter } from 'next/navigation';
+import Loading from '@/components/Loading';
 
 import { useEffect, useState } from 'react';
 
 export default function CreatePage() {
 	const router = useRouter();
+	const [isLoading, setIsLoading] = useState<boolean>(true);
 
 	const [isLoggedIn, setIsLoggedIn] = useState<boolean>();
 	const [walletAddress, setWalletAddress] = useState<string | null>();
@@ -31,11 +33,15 @@ export default function CreatePage() {
 			const walletAddress = await getCurrentWalletAddress();
 			setWalletAddress(walletAddress);
 			setIsLoggedIn(walletAddress !== null);
+			setIsLoading(false);
 		};
 
 		fetchUserStatus();
 	}, []);
 
+	if (isLoading) {
+		return <Loading />;
+	}
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
 		const artistPage: ArtistPage = {

@@ -1,10 +1,17 @@
 import { useEffect, useState } from 'react';
 import { getContractMetadata } from '@/services/wallet/WalletService';
 import { NftContract } from 'alchemy-sdk';
-import { Box, Button, Modal, Typography } from '@mui/material';
+import {
+	Box,
+	Button,
+	CircularProgress,
+	Modal,
+	Typography
+} from '@mui/material';
 import { Warning } from '@mui/icons-material';
 import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded';
 import { useRouter } from 'next/navigation';
+import Loading from '../Loading';
 
 interface UnauthorizedContractAccessProps {
 	contractToken: string | undefined;
@@ -16,13 +23,14 @@ export default function UnauthorizedContractAccess({
 	const router = useRouter();
 
 	const [contract, setContract] = useState<NftContract | undefined>();
+	const [isLoading, setIsLoading] = useState<boolean>(true);
 
 	useEffect(() => {
 		async function fetchContract() {
 			const contractData: NftContract | undefined =
 				await getContractMetadata(contractToken);
 			setContract(contractData);
-			console.log(contractData);
+			setIsLoading(false);
 		}
 		fetchContract();
 	}, [contractToken]);
@@ -31,7 +39,10 @@ export default function UnauthorizedContractAccess({
 		router.push('/artist-gallery');
 	};
 
-	if (!contract) {
+	if (isLoading) {
+		return <Loading />;
+	}
+	if (!isLoading && !contract) {
 		return <p>No contract found</p>;
 	}
 

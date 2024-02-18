@@ -1,4 +1,5 @@
 'use client';
+import Loading from '@/components/Loading';
 import UnauthenticatedUserWarning from '@/components/Warnings/UnauthenticatedUserWarning';
 import UnauthorizedContractAccess from '@/components/Warnings/UnauthroizedContractAccess';
 import { getArtistPageData } from '@/services/database/dao';
@@ -49,16 +50,20 @@ const Page = () => {
 	}, []);
 
 	if (!isPageLoading && !isLoggedIn) {
-		return <UnauthenticatedUserWarning/>;
+		return <UnauthenticatedUserWarning />;
 	}
 	if (!isOwner && !isPageLoading && !hasAccess) {
-		return <UnauthorizedContractAccess contractToken={artistPageData?.artistPage.token_contract}/>
+		return (
+			<UnauthorizedContractAccess
+				contractToken={artistPageData?.artistPage.token_contract}
+			/>
+		);
 	}
 	if (artistPageData === null) {
 		return <div>Page does not exist</div>;
 	}
 	if (isPageLoading) {
-		return <div>LOADING</div>;
+		return <Loading />;
 	}
 	const displayData = (data, prefix = '') => {
 		return Object.entries(data).map(([key, value]) => {
