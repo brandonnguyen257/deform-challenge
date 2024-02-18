@@ -21,8 +21,7 @@ export default function ArtistGallery() {
 			{artistPages.map((artistPage) => (
 				<div key={artistPage.id}>
 					<Link href={`/artist/${artistPage.id}`}>
-						Artist: {artistPage.id} Owner:{' '}
-						{artistPage.wallet_address}
+						Artist: {artistPage.page_name}
 					</Link>
 				</div>
 			))}

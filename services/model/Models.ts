@@ -19,7 +19,7 @@ export type ConcertPresaleCode = {
 	id?: number;
 	artist_page_id?: number;
 	presale_code: string;
-	address: string;
+	venue: string;
 	ticket_link: string;
 	created_at?: Date;
 };

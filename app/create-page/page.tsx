@@ -20,7 +20,7 @@ export default function CreatePage() {
 	const [songLink, setSongLink] = useState('');
 	const [presaleCode, setPresaleCode] = useState('');
 	const [tokenContract, setTokenContract] = useState('');
-	const [address, setAddress] = useState('');
+	const [venue, setVenue] = useState('');
 	const [ticketLink, setTicketLink] = useState('');
 	const [songName, setSongName] = useState('');
 	const [artistPageName, setArtistPageName] = useState('');
@@ -51,7 +51,7 @@ export default function CreatePage() {
 
 		const concertPresaleCode: ConcertPresaleCode = {
 			presale_code: presaleCode,
-			address: address,
+			venue: venue,
 			ticket_link: ticketLink
 		};
 
@@ -61,7 +61,7 @@ export default function CreatePage() {
 			concertPresaleCode: concertPresaleCode
 		};
 
-		// await insertArtistPageData(artistPageData);
+		await insertArtistPageData(artistPageData);
 		router.push('/artist-gallery');
 	};
 
@@ -127,12 +127,12 @@ export default function CreatePage() {
 			</label>
 			<br />
 			<label>
-				Address:
+				Venue:
 				<input
 					type="text"
-					value={address}
+					value={venue}
 					style={{ color: 'black' }}
-					onChange={(e) => setAddress(e.target.value)}
+					onChange={(e) => setVenue(e.target.value)}
 				/>
 			</label>
 			<br />
