@@ -1,66 +1,66 @@
-"use client";
-import { insertArtistPageData } from "@/services/database/dao";
-import { getTestData, insertTestData } from "@/services/database/demo";
+'use client'
+import { insertArtistPageData } from '@/services/database/dao'
+import { getTestData, insertTestData } from '@/services/database/demo'
 import {
   ArtistPage,
   ArtistPageData,
   ConcertPresaleCode,
-  UnreleasedMusic,
-} from "@/services/model/Models";
-import { getCurrentWalletAddress } from "@/services/wallet/WalletService";
+  UnreleasedMusic
+} from '@/services/model/Models'
+import { getCurrentWalletAddress } from '@/services/wallet/WalletService'
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
 export default function CreatePage() {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>();
-  const [walletAddress, setWalletAddress] = useState<string | null>();
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>()
+  const [walletAddress, setWalletAddress] = useState<string | null>()
 
-  const [songLink, setSongLink] = useState("");
-  const [presaleCode, setPresaleCode] = useState("");
-  const [tokenContract, setTokenContract] = useState("");
-  const [address, setAddress] = useState("");
-  const [ticketLink, setTicketLink] = useState("");
-  const [songName, setSongName] = useState("");
+  const [songLink, setSongLink] = useState('')
+  const [presaleCode, setPresaleCode] = useState('')
+  const [tokenContract, setTokenContract] = useState('')
+  const [address, setAddress] = useState('')
+  const [ticketLink, setTicketLink] = useState('')
+  const [songName, setSongName] = useState('')
 
   useEffect(() => {
     const fetchUserStatus = async () => {
-      const walletAddress = await getCurrentWalletAddress();
-      setWalletAddress(walletAddress);
-      setIsLoggedIn(walletAddress !== null);
-    };
+      const walletAddress = await getCurrentWalletAddress()
+      setWalletAddress(walletAddress)
+      setIsLoggedIn(walletAddress !== null)
+    }
 
-    fetchUserStatus();
-  }, []);
+    fetchUserStatus()
+  }, [])
 
   const handleSubmit = async (event: React.FormEvent) => {
     const artistPage: ArtistPage = {
       //TODO add validation to verify non null and non empty
-      wallet_address: walletAddress ? walletAddress : "",
-      token_contract: tokenContract,
-    };
+      wallet_address: walletAddress ? walletAddress : '',
+      token_contract: tokenContract
+    }
 
     const unreleasedMusic: UnreleasedMusic = {
       song_name: songName,
-      song_link: songLink,
-    };
+      song_link: songLink
+    }
 
     const concertPresaleCode: ConcertPresaleCode = {
       presale_code: presaleCode,
       address: address,
-      ticket_link: ticketLink,
-    };
+      ticket_link: ticketLink
+    }
 
     const artistPageData: ArtistPageData = {
       artistPage: artistPage,
       unreleasedMusic: unreleasedMusic,
-      concertPresaleCode: concertPresaleCode,
-    };
+      concertPresaleCode: concertPresaleCode
+    }
 
-    await insertArtistPageData(artistPageData);
-  };
+    await insertArtistPageData(artistPageData)
+  }
 
   if (!isLoggedIn) {
-    return <div>NOT LOGGED IN</div>;
+    return <div>NOT LOGGED IN</div>
   }
 
   return (
@@ -72,7 +72,7 @@ export default function CreatePage() {
           type="text"
           value={tokenContract}
           onChange={(e) => setTokenContract(e.target.value)}
-          style={{ color: "black" }}
+          style={{ color: 'black' }}
         />
       </label>
       <div>Unreleased Music</div>
@@ -81,7 +81,7 @@ export default function CreatePage() {
         <input
           type="text"
           value={songLink}
-          style={{ color: "black" }}
+          style={{ color: 'black' }}
           onChange={(e) => setSongLink(e.target.value)}
         />
       </label>
@@ -91,7 +91,7 @@ export default function CreatePage() {
         <input
           type="text"
           value={songName}
-          style={{ color: "black" }}
+          style={{ color: 'black' }}
           onChange={(e) => setSongName(e.target.value)}
         />
       </label>
@@ -102,7 +102,7 @@ export default function CreatePage() {
         <input
           type="text"
           value={presaleCode}
-          style={{ color: "black" }}
+          style={{ color: 'black' }}
           onChange={(e) => setPresaleCode(e.target.value)}
         />
       </label>
@@ -112,7 +112,7 @@ export default function CreatePage() {
         <input
           type="text"
           value={address}
-          style={{ color: "black" }}
+          style={{ color: 'black' }}
           onChange={(e) => setAddress(e.target.value)}
         />
       </label>
@@ -122,7 +122,7 @@ export default function CreatePage() {
         <input
           type="text"
           value={ticketLink}
-          style={{ color: "black" }}
+          style={{ color: 'black' }}
           onChange={(e) => setTicketLink(e.target.value)}
         />
       </label>
@@ -130,5 +130,5 @@ export default function CreatePage() {
       <br />
       <button type="submit">Submit</button>
     </form>
-  );
+  )
 }

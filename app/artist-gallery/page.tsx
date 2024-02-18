@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link'
 
 export default function ArtistGallery() {
   return (
@@ -9,5 +9,5 @@ export default function ArtistGallery() {
       <br />
       <Link href="/artist/3">Artist 3</Link>
     </div>
-  );
+  )
 }

@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server'
 
 export async function GET() {
-  return NextResponse.json({ message: "Hello World" });
+  return NextResponse.json({ message: 'Hello World' })
   // return new Response('DEMO World');
 
   // const responseData = { message: 'Hello fdsfsd' };

@@ -1,9 +1,9 @@
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from '@/utils/supabase/server'
 
-import Link from "next/link";
-import ConnectWallet from "@/components/HomePage/ConnectWallet";
-import SessionInformation from "@/components/HomePage/SessionInformation";
-import CurrentNfts from "@/components/HomePage/CurrentNfts";
+import Link from 'next/link'
+import ConnectWallet from '@/components/HomePage/ConnectWallet'
+import SessionInformation from '@/components/HomePage/SessionInformation'
+import CurrentNfts from '@/components/HomePage/CurrentNfts'
 
 export default async function Index() {
   // const canInitSupabaseClient = () => {
@@ -39,5 +39,5 @@ export default async function Index() {
 
       <CurrentNfts />
     </div>
-  );
+  )
 }
