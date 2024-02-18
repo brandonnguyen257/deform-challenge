@@ -69,6 +69,17 @@ export const ArtistCard = ({ artistPage }: ArtistCardProps) => {
 						</Typography>
 					</Box>
 				</CardContent>
+				<Box
+					sx={{
+						position: 'absolute',
+						right: 0,
+						top: 0,
+						p: 1,
+						color: 'white'
+					}}
+				>
+					{artistPage.id}
+				</Box>
 			</Card>
 		</ButtonBase>
 	);
