@@ -1,8 +1,9 @@
 'use client';
+import { ArtistCard } from '@/components/ArtistGallery/ArtistCard';
 import Loading from '@/components/Loading';
 import { getAllArtistPages } from '@/services/database/dao';
 import { ArtistPage } from '@/services/model/Models';
-import Link from 'next/link';
+import { Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
 
 export default function ArtistGallery() {
@@ -24,14 +25,12 @@ export default function ArtistGallery() {
 	}
 
 	return (
-		<div>
-			{artistPages.map((artistPage) => (
-				<div key={artistPage.id}>
-					<Link href={`/artist/${artistPage.id}`}>
-						Artist: {artistPage.page_name}
-					</Link>
-				</div>
+		<Grid container spacing={2}>
+			{artistPages.map((artist, index) => (
+				<Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+					<ArtistCard artistPage={artist} />
+				</Grid>
 			))}
-		</div>
+		</Grid>
 	);
 }
