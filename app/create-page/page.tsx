@@ -13,6 +13,7 @@ import Loading from '@/components/Loading';
 
 import { useEffect, useState } from 'react';
 import { ArtistPageConfigurations } from '@/components/CreatePage/ArtistPageConfigurations';
+import { UnreleasedMusicSection } from '@/components/CreatePage/UnreleasedMusicSection';
 
 export default function CreatePage() {
 	const router = useRouter();
@@ -21,16 +22,18 @@ export default function CreatePage() {
 	const [isLoggedIn, setIsLoggedIn] = useState<boolean>();
 	const [walletAddress, setWalletAddress] = useState<string | null>();
 
-	const [songLink, setSongLink] = useState('');
 	const [presaleCode, setPresaleCode] = useState('');
 	const [venue, setVenue] = useState('');
 	const [ticketLink, setTicketLink] = useState('');
-	const [songName, setSongName] = useState('');
 
 	const [artistPage, setArtistPage] = useState<ArtistPage>({
 		wallet_address: walletAddress ? walletAddress : '',
 		token_contract: '',
 		page_name: ''
+	});
+	const [unreleasedMusic, setUnreleasedMusic] = useState<UnreleasedMusic>({
+		song_name: '',
+		song_link: ''
 	});
 
 	useEffect(() => {
@@ -53,11 +56,6 @@ export default function CreatePage() {
 	}
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
-
-		const unreleasedMusic: UnreleasedMusic = {
-			song_name: songName,
-			song_link: songLink
-		};
 
 		const concertPresaleCode: ConcertPresaleCode = {
 			presale_code: presaleCode,
@@ -88,27 +86,11 @@ export default function CreatePage() {
 				setArtistPage={setArtistPage}
 			/>
 			<br />
-			<div>Unreleased Music</div>
-			<label>
-				songLink:
-				<input
-					type="text"
-					value={songLink}
-					style={{ color: 'black' }}
-					onChange={(e) => setSongLink(e.target.value)}
-				/>
-			</label>
-			<br />
-			<label>
-				Song Name:
-				<input
-					type="text"
-					value={songName}
-					style={{ color: 'black' }}
-					onChange={(e) => setSongName(e.target.value)}
-				/>
-			</label>
-			<br />
+			<UnreleasedMusicSection
+				unreleasedMusic={unreleasedMusic}
+				setUnreleasedMusic={setUnreleasedMusic}
+			/>
+
 			<br />
 			<div>Presale Codes</div>
 			<label>

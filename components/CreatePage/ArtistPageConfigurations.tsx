@@ -1,7 +1,7 @@
 'use client';
 
 import { ArtistPage } from '@/services/model/Models';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 interface ArtistPageConfigurationsProps {
 	artistPage: ArtistPage;
@@ -11,8 +11,6 @@ interface ArtistPageConfigurationsProps {
 export const ArtistPageConfigurations: React.FC<
 	ArtistPageConfigurationsProps
 > = ({ artistPage, setArtistPage }) => {
-	//   const [artistPageState, setArtistPageState] = useState(artistPage);
-
 	useEffect(() => {
 		setArtistPage(artistPage);
 	}, [artistPage]);
