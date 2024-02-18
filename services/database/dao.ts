@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
-import { ArtistPage, ArtistPageData, UnreleasedMusic } from '../model/Models'
+import { ArtistPageData } from '../model/Models'
 
 const supabase = createClient(
     process?.env.NEXT_PUBLIC_SUPABASE_URL || '',
@@ -94,4 +94,15 @@ export const getArtistPageData = async (pageId: number) => {
 
     console.log(transformedData)
     return transformedData
+}
+
+export const getAllArtistPages = async () => {
+    const { data, error } = await supabase.from('artist_page').select()
+
+    if (error) {
+        console.error('Error fetching data: ', error)
+        return;
+    }
+
+    return data;
 }
