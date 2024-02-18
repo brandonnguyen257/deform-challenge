@@ -1,10 +1,8 @@
 'use client'
-import { getArtistPage, getArtistPageData } from '@/services/database/dao';
-import { getTestData } from '@/services/database/demo';
-import { ArtistPage, ArtistPageData } from '@/services/model/Models';
-import { TestModel } from '@/services/model/TestModel';
+import { getArtistPageData } from '@/services/database/dao';
+import { ArtistPageData } from '@/services/model/Models';
 import { getCurrentWalletAddress, hasAccessToPage } from '@/services/wallet/WalletService';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 const Page = () => {
@@ -17,6 +15,7 @@ const Page = () => {
   const [hasAccess, setHasAccess] = useState<boolean>(false);
   const [artistPageData, setArtistPageData] = useState<ArtistPageData|undefined>();
   const [isPageLoading, setIsPageLoading] = useState<boolean>(true);
+  const [isOwner, setIsOwner] = useState<boolean>(false);
 
   useEffect(() => {
     // Simulate fetching user authentication status
@@ -33,6 +32,7 @@ const Page = () => {
       setHasAccess(hasAccess);
       setIsPageLoading(false);
       await getArtistPageData(pageId);
+      setIsOwner(data?.artistPage.wallet_address === walletAddress);
     };
 
     fetchUserStatus();
@@ -42,7 +42,7 @@ const Page = () => {
   if(!isPageLoading && !isLoggedIn) {
     return <div>NOT LOGGED IN</div>
   }
-  if(!isPageLoading && !hasAccess) {
+  if(!isOwner && !isPageLoading && !hasAccess) {
     return <div>NO ACCESS</div>
   }
   if(artistPageData === null) {

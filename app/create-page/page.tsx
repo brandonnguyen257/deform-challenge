@@ -28,7 +28,6 @@ export default function CreatePage() {
     }, []);
 
   const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault(); // This prevents the page from refreshing when you submit the form
 
 
     const artistPage: ArtistPage = {

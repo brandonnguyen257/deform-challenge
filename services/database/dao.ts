@@ -40,19 +40,19 @@ export const insertArtistPageData = async (data: ArtistPageData) => {
 
 
 
-export const getArtistPage = async (pageId: number) => {
-    const { data: pageData, error:getArtistPageError } = await supabase
-    .from("artist_page")
-    .select()
-    .eq('id', pageId)
-    .maybeSingle();
-    if (getArtistPageError) {
-        console.error('Error getArtistPageData: ', getArtistPageError);
-        return;
-      }
-    console.log(pageData);
-    return pageData as ArtistPage;
-}
+// export const getArtistPage = async (pageId: number) => {
+//     const { data: pageData, error:getArtistPageError } = await supabase
+//     .from("artist_page")
+//     .select()
+//     .eq('id', pageId)
+//     .maybeSingle();
+//     if (getArtistPageError) {
+//         console.error('Error getArtistPageData: ', getArtistPageError);
+//         return;
+//       }
+//     console.log(pageData);
+//     return pageData as ArtistPage;
+// }
 
 export const getArtistPageData = async (pageId: number) => {
     const { data, error } = await supabase
