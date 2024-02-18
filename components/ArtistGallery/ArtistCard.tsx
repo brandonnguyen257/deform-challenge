@@ -21,9 +21,14 @@ const ArtistCardSx = {
 	flexDirection: 'column',
 	bgcolor: 'black',
 	width: '100%',
-	border: '1px solid white'
-};
+	border: '1px solid white',
 
+	'&:hover': {
+		transform: 'scale(1.05)',
+		boxShadow: '0 0 50px rgba(255, 255, 255, 0.5)'
+	},
+	transition: 'transform 0.3s ease-in-out, boxShadow 0.3s ease-in-out'
+};
 export const ArtistCard = ({ artistPage }: ArtistCardProps) => {
 	const router = useRouter();
 

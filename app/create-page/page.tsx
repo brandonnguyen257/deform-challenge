@@ -15,7 +15,7 @@ import { useEffect, useState } from 'react';
 import { ArtistPageSection } from '@/components/CreatePage/ArtistPageSection';
 import { UnreleasedMusicSection } from '@/components/CreatePage/UnreleasedMusicSection';
 import { ConcertPresaleCodeSection } from '@/components/CreatePage/ConcertPresaleCodeSection';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Container, Typography } from '@mui/material';
 import { SubmitButtonSx } from '@/components/CreatePage/StylingConfig';
 
 export default function CreatePage() {
@@ -82,7 +82,7 @@ export default function CreatePage() {
 	}
 
 	return (
-		<Box
+		<Container
 			sx={{
 				width: '75%',
 				height: '75%'
@@ -111,7 +111,7 @@ export default function CreatePage() {
 				setConcertPresaleCode={setConcertPresaleCode}
 			/>
 
-			<Box
+			<Container
 				sx={{
 					display: 'flex',
 					justifyContent: 'center',
@@ -125,7 +125,7 @@ export default function CreatePage() {
 				>
 					Submit
 				</Button>
-			</Box>
-		</Box>
+			</Container>
+		</Container>
 	);
 }

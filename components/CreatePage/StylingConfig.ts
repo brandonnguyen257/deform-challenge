@@ -16,7 +16,9 @@ export const SubmitButtonSx = {
     color: 'white',
     borderColor: 'white',
     borderWidth: '2px',
-    // '&:hover': {
-    //     backgroundColor: 'rgba(255, 255, 255, 0.1)' // Slight white background on hover
-    // }
+	'&:hover': {
+		transform: 'scale(1.05)',
+		boxShadow: '0 0 10px rgba(255, 255, 255, 0.5)'
+	},
+	transition: 'transform 0.1s ease-in-out, boxShadow 0.3s ease-in-out'
 };
