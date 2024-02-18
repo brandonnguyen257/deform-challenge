@@ -48,7 +48,7 @@ export const ArtistPageSection: React.FC<ArtistPageSectionProps> = ({
 						component="div"
 						sx={{ flexGrow: 1, color: 'white' }}
 					>
-						Artist Page Section
+						Artist Page
 					</Typography>
 				</Box>
 				<Box

@@ -26,60 +26,80 @@ export const UnreleasedMusicSection: React.FC<UnreleasedMusicSectionProps> = ({
 			<Box
 				component="form"
 				sx={{
-					'& > :not(style)': { m: 1, width: '25ch' }
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+					'& > :not(style)': { m: 1 }
 				}}
 				noValidate
 				autoComplete="off"
 			>
-				<Typography
-					variant="h4"
-					component="div"
-					sx={{ flexGrow: 1, color: 'white' }}
+				<Box
+					sx={{
+						display: 'flex',
+						justifyContent: 'center',
+						width: '100%'
+					}}
 				>
-					Unreleased Music Section
-				</Typography>
-				<TextField
-					required
-					id="outlined-basic"
-					label="Song Name"
-					variant="outlined"
-					value={unreleasedMusic.song_name}
-					onChange={(e) =>
-						handleInputChange('song_name', e.target.value)
-					}
-					InputProps={{
-						style: {
-							color: 'white'
-						}
+					<Typography
+						variant="h4"
+						component="div"
+						sx={{ flexGrow: 1, color: 'white' }}
+					>
+						Unreleased Music
+					</Typography>
+				</Box>
+				<Box
+					sx={{
+						display: 'flex',
+						justifyContent: 'space-between',
+						gap: 2,
+						width: '100%'
 					}}
-					InputLabelProps={{
-						style: {
-							color: 'white'
+				>
+					<TextField
+						required
+						id="outlined-basic"
+						label="Song Name"
+						variant="outlined"
+						value={unreleasedMusic.song_name}
+						onChange={(e) =>
+							handleInputChange('song_name', e.target.value)
 						}
-					}}
-					sx={CreatePageTextFieldSx}
-				/>
-				<TextField
-					required
-					id="outlined-basic"
-					label="Song Link"
-					variant="outlined"
-					value={unreleasedMusic.song_link}
-					onChange={(e) =>
-						handleInputChange('song_link', e.target.value)
-					}
-					InputProps={{
-						style: {
-							color: 'white'
+						InputProps={{
+							style: {
+								color: 'white'
+							}
+						}}
+						InputLabelProps={{
+							style: {
+								color: 'white'
+							}
+						}}
+						sx={{ ...CreatePageTextFieldSx, width: '50%' }}
+					/>
+					<TextField
+						required
+						id="outlined-basic"
+						label="Song Link"
+						variant="outlined"
+						value={unreleasedMusic.song_link}
+						onChange={(e) =>
+							handleInputChange('song_link', e.target.value)
 						}
-					}}
-					InputLabelProps={{
-						style: {
-							color: 'white'
-						}
-					}}
-					sx={CreatePageTextFieldSx}
-				/>
+						InputProps={{
+							style: {
+								color: 'white'
+							}
+						}}
+						InputLabelProps={{
+							style: {
+								color: 'white'
+							}
+						}}
+						sx={{ ...CreatePageTextFieldSx, width: '50%' }}
+					/>
+				</Box>
 			</Box>
 		</>
 	);
