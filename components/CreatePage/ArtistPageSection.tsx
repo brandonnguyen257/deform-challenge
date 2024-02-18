@@ -3,6 +3,7 @@
 import { ArtistPage } from '@/services/model/Models';
 import { Box, TextField, Typography } from '@mui/material';
 import { useEffect } from 'react';
+import { CreatePageTextFieldSx } from './StylingConfig';
 
 interface ArtistPageSectionProps {
 	artistPage: ArtistPage;
@@ -58,20 +59,7 @@ export const ArtistPageSection: React.FC<ArtistPageSectionProps> = ({
 							color: 'white'
 						}
 					}}
-					sx={{
-						'& .MuiOutlinedInput-root': {
-							'& fieldset': {
-								borderColor: 'white',
-								borderWidth: '2px'
-							},
-							'&:hover fieldset': {
-								borderColor: 'white'
-							},
-							'&.Mui-focused fieldset': {
-								borderColor: 'white'
-							}
-						}
-					}}
+					sx={CreatePageTextFieldSx}
 				/>
 				<TextField
 					required
@@ -92,20 +80,7 @@ export const ArtistPageSection: React.FC<ArtistPageSectionProps> = ({
 							color: 'white'
 						}
 					}}
-					sx={{
-						'& .MuiOutlinedInput-root': {
-							'& fieldset': {
-								borderColor: 'white',
-								borderWidth: '2px'
-							},
-							'&:hover fieldset': {
-								borderColor: 'white'
-							},
-							'&.Mui-focused fieldset': {
-								borderColor: 'white'
-							}
-						}
-					}}
+					sx={CreatePageTextFieldSx}
 				/>
 			</Box>
 		</>
