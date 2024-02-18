@@ -5,8 +5,6 @@ import {
 	ButtonBase,
 	Card,
 	CardContent,
-	IconButton,
-	Tooltip,
 	Typography
 } from '@mui/material';
 import { useRouter } from 'next/navigation';
@@ -70,23 +68,9 @@ export const ArtistCard = ({ artistPage }: ArtistCardProps) => {
 							component="div"
 							sx={{ color: 'white' }}
 						>
-							Active Since: {displayDate}
+							Created {displayDate}
 						</Typography>
 					</Box>
-					<Typography
-						variant="caption"
-						component="div"
-						sx={{ color: 'white' }}
-					>
-						Artist Wallet: {artistPage.wallet_address}
-					</Typography>
-					<Typography
-						variant="caption"
-						component="div"
-						sx={{ color: 'white' }}
-					>
-						Contract: {artistPage.token_contract}
-					</Typography>
 				</CardContent>
 				<Box
 					sx={{

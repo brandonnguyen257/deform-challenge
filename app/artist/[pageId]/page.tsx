@@ -1,4 +1,6 @@
 'use client';
+import { ArtistCard } from '@/components/ArtistGallery/ArtistCard';
+import { ArtistPageSection } from '@/components/ArtistPage/ArtistPageSection';
 import Loading from '@/components/Loading';
 import UnauthenticatedUserWarning from '@/components/Warnings/UnauthenticatedUserWarning';
 import UnauthorizedContractAccess from '@/components/Warnings/UnauthroizedContractAccess';
@@ -8,6 +10,7 @@ import {
 	getCurrentWalletAddress,
 	hasAccessToPage
 } from '@/services/wallet/WalletService';
+import { Container } from '@mui/material';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
@@ -64,34 +67,13 @@ const Page = () => {
 	if (isPageLoading) {
 		return <Loading />;
 	}
-	const displayData = (data, prefix = '') => {
-		return Object.entries(data).map(([key, value]) => {
-			const formattedKey = key
-				.split('_')
-				.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-				.join(' ');
-
-			if (typeof value === 'object' && value !== null) {
-				if (Array.isArray(value)) {
-					return value.map((item, index) =>
-						displayData(item, `${formattedKey} ${index + 1} `)
-					);
-				} else {
-					return displayData(value, `${formattedKey} `);
-				}
-			} else {
-				return (
-					<React.Fragment key={prefix + key}>
-						{prefix}
-						{formattedKey}: {String(value)}
-						<br />
-					</React.Fragment>
-				);
-			}
-		});
-	};
-
-	return <div>{displayData(artistPageData)}</div>;
+	return (
+		<Container maxWidth="xl">
+			{artistPageData?.artistPage && (
+				<ArtistPageSection artistPage={artistPageData?.artistPage} />
+			)}
+		</Container>
+	);
 };
 
 export default Page;
