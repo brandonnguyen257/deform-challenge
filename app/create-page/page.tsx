@@ -16,10 +16,7 @@ import { ArtistPageSection } from '@/components/CreatePage/ArtistPageSection';
 import { UnreleasedMusicSection } from '@/components/CreatePage/UnreleasedMusicSection';
 import { ConcertPresaleCodeSection } from '@/components/CreatePage/ConcertPresaleCodeSection';
 import { Box, Button, Typography } from '@mui/material';
-import {
-	CreatePageTextFieldSx,
-	SubmitButtonSx
-} from '@/components/CreatePage/StylingConfig';
+import { SubmitButtonSx } from '@/components/CreatePage/StylingConfig';
 
 export default function CreatePage() {
 	const router = useRouter();
@@ -75,7 +72,6 @@ export default function CreatePage() {
 			unreleasedMusic: unreleasedMusic,
 			concertPresaleCode: concertPresaleCode
 		};
-		console.log(artistPageData);
 
 		await insertArtistPageData(artistPageData);
 		router.push('/artist-gallery');
@@ -88,8 +84,8 @@ export default function CreatePage() {
 	return (
 		<Box
 			sx={{
-				width: '75%', // or any other value
-				height: '75%' // or any other value
+				width: '75%',
+				height: '75%'
 			}}
 		>
 			<Typography

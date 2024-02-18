@@ -3,7 +3,7 @@ import { ArtistCard } from '@/components/ArtistGallery/ArtistCard';
 import Loading from '@/components/Loading';
 import { getAllArtistPages } from '@/services/database/dao';
 import { ArtistPage } from '@/services/model/Models';
-import { Grid } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
 
 export default function ArtistGallery() {
@@ -25,12 +25,14 @@ export default function ArtistGallery() {
 	}
 
 	return (
-		<Grid container spacing={2}>
-			{artistPages.map((artist, index) => (
-				<Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-					<ArtistCard artistPage={artist} />
-				</Grid>
-			))}
-		</Grid>
+		<Container maxWidth="xl">
+			<Grid container spacing={3}>
+				{artistPages.map((artist, index) => (
+					<Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+						<ArtistCard artistPage={artist} />
+					</Grid>
+				))}
+			</Grid>
+		</Container>
 	);
 }

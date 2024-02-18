@@ -2,8 +2,8 @@ export type ArtistPage = {
 	id?: number;
 	wallet_address: string;
 	token_contract: string;
-  page_name: string;
-  profile_image?: string;
+	page_name: string;
+	profile_image?: string;
 	created_at?: Date;
 };
 
