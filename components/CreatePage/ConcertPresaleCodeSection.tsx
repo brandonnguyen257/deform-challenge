@@ -31,79 +31,95 @@ export const ConcertPresaleCodeSection: React.FC<
 			<Box
 				component="form"
 				sx={{
-					'& > :not(style)': { m: 1, width: '25ch' }
+					width: '100%',
+					'& > :not(style)': { width: '100%' }
 				}}
 				noValidate
 				autoComplete="off"
 			>
-				<Typography
-					variant="h4"
-					component="div"
-					sx={{ flexGrow: 1, color: 'white' }}
+				<Box sx={{ width: '100%' }}>
+					<Typography
+						variant="h4"
+						component="div"
+						sx={{ flexGrow: 1, color: 'white' }}
+					>
+						Concert Presale Code
+					</Typography>
+				</Box>
+
+				<Box
+					sx={{
+						display: 'flex',
+						justifyContent: 'space-between',
+						gap: 2,
+						width: '100%',
+						'& > :not(style)': { width: '48%', margin: '1rem 0' }
+					}}
 				>
-					Concert Presale Code
-				</Typography>
-				<TextField
-					required
-					id="outlined-basic"
-					label="Presale Code"
-					variant="outlined"
-					value={concertPresaleCode.presale_code}
-					onChange={(e) =>
-						handleInputChange('presale_code', e.target.value)
-					}
-					InputProps={{
-						style: {
-							color: 'white'
+					<TextField
+						required
+						id="outlined-basic"
+						label="Presale Code"
+						variant="outlined"
+						value={concertPresaleCode.presale_code}
+						onChange={(e) =>
+							handleInputChange('presale_code', e.target.value)
 						}
-					}}
-					InputLabelProps={{
-						style: {
-							color: 'white'
+						InputProps={{
+							style: {
+								color: 'white'
+							}
+						}}
+						InputLabelProps={{
+							style: {
+								color: 'white'
+							}
+						}}
+						sx={CreatePageTextFieldSx}
+					/>
+					<TextField
+						required
+						id="outlined-basic"
+						label="Venue"
+						variant="outlined"
+						value={concertPresaleCode.venue}
+						onChange={(e) =>
+							handleInputChange('venue', e.target.value)
 						}
-					}}
-					sx={CreatePageTextFieldSx}
-				/>
-				<TextField
-					required
-					id="outlined-basic"
-					label="Venue"
-					variant="outlined"
-					value={concertPresaleCode.venue}
-					onChange={(e) => handleInputChange('venue', e.target.value)}
-					InputProps={{
-						style: {
-							color: 'white'
+						InputProps={{
+							style: {
+								color: 'white'
+							}
+						}}
+						InputLabelProps={{
+							style: {
+								color: 'white'
+							}
+						}}
+						sx={CreatePageTextFieldSx}
+					/>
+					<TextField
+						required
+						id="outlined-basic"
+						label="Ticket Link"
+						variant="outlined"
+						value={concertPresaleCode.ticket_link}
+						onChange={(e) =>
+							handleInputChange('ticket_link', e.target.value)
 						}
-					}}
-					InputLabelProps={{
-						style: {
-							color: 'white'
-						}
-					}}
-					sx={CreatePageTextFieldSx}
-				/>
-				<TextField
-					required
-					id="outlined-basic"
-					label="Ticket Link"
-					variant="outlined"
-					value={concertPresaleCode.ticket_link}
-					onChange={(e) =>
-						handleInputChange('ticket_link', e.target.value)
-					}
-					InputProps={{
-						style: {
-							color: 'white'
-						}
-					}}
-					InputLabelProps={{
-						style: {
-							color: 'white'
-						}
-					}}
-					sx={CreatePageTextFieldSx}
-				/>
+						InputProps={{
+							style: {
+								color: 'white'
+							}
+						}}
+						InputLabelProps={{
+							style: {
+								color: 'white'
+							}
+						}}
+						sx={CreatePageTextFieldSx}
+					/>
+				</Box>
 			</Box>
 		</>
 	);

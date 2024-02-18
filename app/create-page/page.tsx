@@ -86,7 +86,12 @@ export default function CreatePage() {
 	}
 
 	return (
-		<Box>
+		<Box
+			sx={{
+				width: '75%', // or any other value
+				height: '75%' // or any other value
+			}}
+		>
 			<Typography
 				variant="h2"
 				component="div"
