@@ -15,7 +15,7 @@ import { useEffect, useState } from 'react';
 import { ArtistPageSection } from '@/components/CreatePage/ArtistPageSection';
 import { UnreleasedMusicSection } from '@/components/CreatePage/UnreleasedMusicSection';
 import { ConcertPresaleCodeSection } from '@/components/CreatePage/ConcertPresaleCodeSection';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import {
 	CreatePageTextFieldSx,
 	SubmitButtonSx
@@ -86,30 +86,30 @@ export default function CreatePage() {
 	}
 
 	return (
-		<Box
-			sx={{
-				backgroundColor: '#313131',
-				padding: 2,
-				borderRadius: 1
-			}}
-		>
-			<br />
+		<Box>
+			<Typography
+				variant="h2"
+				component="div"
+				sx={{ color: 'white', textAlign: 'center', py: 2 }}
+			>
+				Create Page Form
+			</Typography>
+
 			<ArtistPageSection
 				artistPage={artistPage}
 				setArtistPage={setArtistPage}
 			/>
-			<br />
+
 			<UnreleasedMusicSection
 				unreleasedMusic={unreleasedMusic}
 				setUnreleasedMusic={setUnreleasedMusic}
 			/>
 
-			<br />
 			<ConcertPresaleCodeSection
 				concertPresaleCode={concertPresaleCode}
 				setConcertPresaleCode={setConcertPresaleCode}
 			/>
-			<br />
+
 			<Box
 				sx={{
 					display: 'flex',

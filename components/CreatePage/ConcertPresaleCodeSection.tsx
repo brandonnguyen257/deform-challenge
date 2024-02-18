@@ -41,7 +41,7 @@ export const ConcertPresaleCodeSection: React.FC<
 					component="div"
 					sx={{ flexGrow: 1, color: 'white' }}
 				>
-					Concert Presale Code Section
+					Concert Presale Code
 				</Typography>
 				<TextField
 					required
