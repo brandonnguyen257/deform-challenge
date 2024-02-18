@@ -1,29 +1,31 @@
 'use client';
 import { getAllArtistPages } from '@/services/database/dao';
+import { ArtistPage } from '@/services/model/Models';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 export default function ArtistGallery() {
-	// const [artistPages, setArtistPages] = useState([])
+	const [artistPages, setArtistPages] = useState<ArtistPage[]>([]);
 
 	useEffect(() => {
 		const fetchArtistPages = async () => {
 			const data = await getAllArtistPages();
-			console.log(data);
+			setArtistPages(data);
 		};
 
 		fetchArtistPages();
 	}, []);
 
-	// rest of your component
-
 	return (
 		<div>
-			<Link href="/artist/1">Artist 1</Link>
-			<br />
-			<Link href="/artist/2">Artist 2</Link>
-			<br />
-			<Link href="/artist/3">Artist 3</Link>
+			{artistPages.map((artistPage) => (
+				<div key={artistPage.id}>
+					<Link href={`/artist/${artistPage.id}`}>
+						Artist: {artistPage.id} Owner:{' '}
+						{artistPage.wallet_address}
+					</Link>
+				</div>
+			))}
 		</div>
 	);
 }

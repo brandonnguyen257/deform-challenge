@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { ArtistPageData } from '../model/Models';
+import { ArtistPage, ArtistPageData } from '../model/Models';
 
 const supabase = createClient(
 	process?.env.NEXT_PUBLIC_SUPABASE_URL || '',
@@ -104,8 +104,8 @@ export const getAllArtistPages = async () => {
 
 	if (error) {
 		console.error('Error fetching data: ', error);
-		return;
+		return [];
 	}
 
-	return data;
+	return data as ArtistPage[];
 };
