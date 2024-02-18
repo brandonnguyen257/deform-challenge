@@ -7,23 +7,22 @@ export default function Loading() {
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			setLoading(false);
-		}, 0); // Delay for 500 milliseconds (0.5 seconds)
-
-		return () => clearTimeout(timer); // Clean up the timer
+		}, 0);
+		return () => clearTimeout(timer);
 	}, []);
 
 	if (loading) {
-		return null; // Don't render anything while loading
+		return null;
 	}
 
 	return (
 		<Box
 			sx={{
 				display: 'flex',
-				flexDirection: 'column', // Stack the children vertically
+				flexDirection: 'column',
 				justifyContent: 'center',
 				alignItems: 'center',
-				height: '100vh' // Take up the full viewport height
+				height: '100vh'
 			}}
 		>
 			<CircularProgress color="inherit" size={100} />

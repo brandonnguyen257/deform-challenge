@@ -26,7 +26,6 @@ const Page = () => {
 	const [isOwner, setIsOwner] = useState<boolean>(false);
 
 	useEffect(() => {
-		// Simulate fetching user authentication status
 		const fetchUserStatus = async () => {
 			setIsPageLoading(true);
 			const walletAddress = await getCurrentWalletAddress();

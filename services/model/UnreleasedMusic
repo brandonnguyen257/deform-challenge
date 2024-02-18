@@ -1,7 +1,0 @@
-export type UnreleasedMusic = {
-    id?: number;
-    artist_page_id: number;
-    song_name: string;
-    song_link: string;
-    created_at: Date;
-}
