@@ -73,8 +73,8 @@ export default function CreatePage() {
 		};
 		console.log(artistPageData);
 
-		await insertArtistPageData(artistPageData);
-		router.push('/artist-gallery');
+		// await insertArtistPageData(artistPageData);
+		// router.push('/artist-gallery');
 	};
 
 	if (!isLoggedIn) {
