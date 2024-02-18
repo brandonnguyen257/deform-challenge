@@ -1,4 +1,5 @@
 'use client';
+import UnauthenticatedUserWarning from '@/components/Warnings/UnauthenticatedUserWarning';
 import UnauthorizedContractAccess from '@/components/Warnings/UnauthroizedContractAccess';
 import { getArtistPageData } from '@/services/database/dao';
 import { ArtistPageData } from '@/services/model/Models';
@@ -48,7 +49,7 @@ const Page = () => {
 	}, []);
 
 	if (!isPageLoading && !isLoggedIn) {
-		return <div>NOT LOGGED IN</div>;
+		return <UnauthenticatedUserWarning/>;
 	}
 	if (!isOwner && !isPageLoading && !hasAccess) {
 		return <UnauthorizedContractAccess contractToken={artistPageData?.artistPage.token_contract}/>
