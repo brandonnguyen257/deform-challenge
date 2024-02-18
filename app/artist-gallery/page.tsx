@@ -28,7 +28,7 @@ export default function ArtistGallery() {
 		<Container maxWidth="xl">
 			<Grid container spacing={3}>
 				{artistPages.map((artist, index) => (
-					<Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+					<Grid item xs={12} sm={6} md={6} lg={4} key={index}>
 						<ArtistCard artistPage={artist} />
 					</Grid>
 				))}

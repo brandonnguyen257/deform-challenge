@@ -5,6 +5,8 @@ import {
 	ButtonBase,
 	Card,
 	CardContent,
+	IconButton,
+	Tooltip,
 	Typography
 } from '@mui/material';
 import { useRouter } from 'next/navigation';
@@ -25,9 +27,12 @@ const ArtistCardSx = {
 export const ArtistCard = ({ artistPage }: ArtistCardProps) => {
 	const router = useRouter();
 
+	const displayDate = artistPage?.created_at
+		? new Date(artistPage.created_at)?.toLocaleDateString()
+		: '';
+
 	const onCardClick = () => {
-		console.log(artistPage.profile_image);
-		// router.push(`/artist/${artistPage.id}`);
+		router.push(`/artist/${artistPage.id}`);
 	};
 	return (
 		<ButtonBase
@@ -54,6 +59,13 @@ export const ArtistCard = ({ artistPage }: ArtistCardProps) => {
 							sx={{ color: 'white' }}
 						>
 							{artistPage.page_name}
+						</Typography>
+						<Typography
+							variant="h5"
+							component="div"
+							sx={{ color: 'white' }}
+						>
+							Active Since: {displayDate}
 						</Typography>
 					</Box>
 				</CardContent>
