@@ -1,6 +1,7 @@
 'use client';
-import { ArtistCard } from '@/components/ArtistGallery/ArtistCard';
 import { ArtistPageSection } from '@/components/ArtistPage/ArtistPageSection';
+import { PromoCodeSection } from '@/components/ArtistPage/PromoCodeSection';
+import { UnreleasedMusicSection } from '@/components/ArtistPage/UnreleasedMusic';
 import Loading from '@/components/Loading';
 import UnauthenticatedUserWarning from '@/components/Warnings/UnauthenticatedUserWarning';
 import UnauthorizedContractAccess from '@/components/Warnings/UnauthroizedContractAccess';
@@ -10,7 +11,7 @@ import {
 	getCurrentWalletAddress,
 	hasAccessToPage
 } from '@/services/wallet/WalletService';
-import { Container } from '@mui/material';
+import { Card, CardContent, Container, Grid, Typography } from '@mui/material';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
@@ -67,11 +68,17 @@ const Page = () => {
 	if (isPageLoading) {
 		return <Loading />;
 	}
+
 	return (
 		<Container maxWidth="xl">
 			{artistPageData?.artistPage && (
 				<ArtistPageSection artistPage={artistPageData?.artistPage} />
 			)}
+			<Grid container spacing={1}>
+				<UnreleasedMusicSection />
+
+				<PromoCodeSection />
+			</Grid>
 		</Container>
 	);
 };
