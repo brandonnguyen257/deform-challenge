@@ -15,7 +15,11 @@ import { useEffect, useState } from 'react';
 import { ArtistPageSection } from '@/components/CreatePage/ArtistPageSection';
 import { UnreleasedMusicSection } from '@/components/CreatePage/UnreleasedMusicSection';
 import { ConcertPresaleCodeSection } from '@/components/CreatePage/ConcertPresaleCodeSection';
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
+import {
+	CreatePageTextFieldSx,
+	SubmitButtonSx
+} from '@/components/CreatePage/StylingConfig';
 
 export default function CreatePage() {
 	const router = useRouter();
@@ -83,12 +87,10 @@ export default function CreatePage() {
 
 	return (
 		<Box
-			component="form"
-			onSubmit={handleSubmit}
 			sx={{
 				backgroundColor: '#313131',
-				padding: 2, // add some padding
-				borderRadius: 1 // add some border radius
+				padding: 2,
+				borderRadius: 1
 			}}
 		>
 			<br />
@@ -108,7 +110,21 @@ export default function CreatePage() {
 				setConcertPresaleCode={setConcertPresaleCode}
 			/>
 			<br />
-			<button type="submit">Submit</button>
+			<Box
+				sx={{
+					display: 'flex',
+					justifyContent: 'center',
+					width: '100%'
+				}}
+			>
+				<Button
+					onClick={handleSubmit}
+					variant="outlined"
+					sx={SubmitButtonSx}
+				>
+					Submit
+				</Button>
+			</Box>
 		</Box>
 	);
 }

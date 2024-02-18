@@ -28,60 +28,80 @@ export const ArtistPageSection: React.FC<ArtistPageSectionProps> = ({
 			<Box
 				component="form"
 				sx={{
-					'& > :not(style)': { m: 1, width: '25ch' }
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+					'& > :not(style)': { m: 1 }
 				}}
 				noValidate
 				autoComplete="off"
 			>
-				<Typography
-					variant="h4"
-					component="div"
-					sx={{ flexGrow: 1, color: 'white' }}
+				<Box
+					sx={{
+						display: 'flex',
+						justifyContent: 'center',
+						width: '100%'
+					}}
 				>
-					Artist Page Section
-				</Typography>
-				<TextField
-					required
-					id="outlined-basic"
-					label="Token Contract"
-					variant="outlined"
-					value={artistPage.token_contract}
-					onChange={(e) =>
-						handleInputChange('token_contract', e.target.value)
-					}
-					InputProps={{
-						style: {
-							color: 'white'
-						}
+					<Typography
+						variant="h4"
+						component="div"
+						sx={{ flexGrow: 1, color: 'white' }}
+					>
+						Artist Page Section
+					</Typography>
+				</Box>
+				<Box
+					sx={{
+						display: 'flex',
+						justifyContent: 'space-between',
+						gap: 2,
+						width: '100%'
 					}}
-					InputLabelProps={{
-						style: {
-							color: 'white'
+				>
+					<TextField
+						required
+						id="outlined-basic"
+						label="Token Contract"
+						variant="outlined"
+						value={artistPage.token_contract}
+						onChange={(e) =>
+							handleInputChange('token_contract', e.target.value)
 						}
-					}}
-					sx={CreatePageTextFieldSx}
-				/>
-				<TextField
-					required
-					id="outlined-basic"
-					label="Artist Page Name"
-					variant="outlined"
-					value={artistPage.page_name}
-					onChange={(e) =>
-						handleInputChange('page_name', e.target.value)
-					}
-					InputProps={{
-						style: {
-							color: 'white'
+						InputProps={{
+							style: {
+								color: 'white'
+							}
+						}}
+						InputLabelProps={{
+							style: {
+								color: 'white'
+							}
+						}}
+						sx={{ ...CreatePageTextFieldSx, width: '50%' }}
+					/>
+					<TextField
+						required
+						id="outlined-basic"
+						label="Artist Page Name"
+						variant="outlined"
+						value={artistPage.page_name}
+						onChange={(e) =>
+							handleInputChange('page_name', e.target.value)
 						}
-					}}
-					InputLabelProps={{
-						style: {
-							color: 'white'
-						}
-					}}
-					sx={CreatePageTextFieldSx}
-				/>
+						InputProps={{
+							style: {
+								color: 'white'
+							}
+						}}
+						InputLabelProps={{
+							style: {
+								color: 'white'
+							}
+						}}
+						sx={{ ...CreatePageTextFieldSx, width: '50%' }}
+					/>
+				</Box>
 			</Box>
 		</>
 	);
