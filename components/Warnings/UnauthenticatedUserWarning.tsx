@@ -1,5 +1,12 @@
+import { Box, Typography } from '@mui/material';
+
 export default function UnauthenticatedUserWarning() {
 	return (
-		<p>You do not have access to this page. Please log in with wallet.</p>
+		<>
+			<Typography variant="h4" component="h2">
+				You do not have access to this page. Please log in with wallet
+			</Typography>
+		</>
 	);
 }
+// You do not have access to this page. Please log in with wallet

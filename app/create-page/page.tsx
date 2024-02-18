@@ -1,4 +1,5 @@
 'use client';
+import UnauthenticatedUserWarning from '@/components/Warnings/UnauthenticatedUserWarning';
 import { insertArtistPageData } from '@/services/database/dao';
 import {
 	ArtistPage,
@@ -66,7 +67,7 @@ export default function CreatePage() {
 	};
 
 	if (!isLoggedIn) {
-		return <div>NOT LOGGED IN</div>;
+		return <UnauthenticatedUserWarning />;
 	}
 
 	return (
