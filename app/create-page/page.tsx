@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 import Loading from '@/components/Loading';
 
 import { useEffect, useState } from 'react';
+import { ArtistPageConfigurations } from '@/components/CreatePage/ArtistPageConfigurations';
 
 export default function CreatePage() {
 	const router = useRouter();
@@ -22,11 +23,15 @@ export default function CreatePage() {
 
 	const [songLink, setSongLink] = useState('');
 	const [presaleCode, setPresaleCode] = useState('');
-	const [tokenContract, setTokenContract] = useState('');
 	const [venue, setVenue] = useState('');
 	const [ticketLink, setTicketLink] = useState('');
 	const [songName, setSongName] = useState('');
-	const [artistPageName, setArtistPageName] = useState('');
+
+	const [artistPage, setArtistPage] = useState<ArtistPage>({
+		wallet_address: walletAddress ? walletAddress : '',
+		token_contract: '',
+		page_name: ''
+	});
 
 	useEffect(() => {
 		const fetchUserStatus = async () => {
@@ -34,6 +39,10 @@ export default function CreatePage() {
 			setWalletAddress(walletAddress);
 			setIsLoggedIn(walletAddress !== null);
 			setIsLoading(false);
+			setArtistPage({
+				...artistPage,
+				wallet_address: walletAddress ? walletAddress : ''
+			});
 		};
 
 		fetchUserStatus();
@@ -44,12 +53,6 @@ export default function CreatePage() {
 	}
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
-		const artistPage: ArtistPage = {
-			//TODO add validation to verify non null and non empty
-			wallet_address: walletAddress ? walletAddress : '',
-			token_contract: tokenContract,
-			page_name: artistPageName
-		};
 
 		const unreleasedMusic: UnreleasedMusic = {
 			song_name: songName,
@@ -67,6 +70,7 @@ export default function CreatePage() {
 			unreleasedMusic: unreleasedMusic,
 			concertPresaleCode: concertPresaleCode
 		};
+		console.log(artistPageData);
 
 		await insertArtistPageData(artistPageData);
 		router.push('/artist-gallery');
@@ -78,27 +82,11 @@ export default function CreatePage() {
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<div>Artist Page Configurations</div>
-			<label>
-				tokenContract:
-				<input
-					type="text"
-					value={tokenContract}
-					onChange={(e) => setTokenContract(e.target.value)}
-					style={{ color: 'black' }}
-				/>
-			</label>
 			<br />
-			<label>
-				Artist Page Name:
-				<input
-					type="text"
-					value={artistPageName}
-					onChange={(e) => setArtistPageName(e.target.value)}
-					style={{ color: 'black' }}
-				/>
-			</label>
-			<br />
+			<ArtistPageConfigurations
+				artistPage={artistPage}
+				setArtistPage={setArtistPage}
+			/>
 			<br />
 			<div>Unreleased Music</div>
 			<label>
