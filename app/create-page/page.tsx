@@ -1,6 +1,7 @@
 'use client'
+import { insertArtistPageData } from "@/services/database/dao";
 import { getTestData, insertTestData } from "@/services/database/demo";
-import { TestModel } from "@/services/model/TestModel";
+import { ArtistPage, ArtistPageData, ConcertPresaleCode, UnreleasedMusic } from "@/services/model/Models";
 import { getCurrentWalletAddress } from "@/services/wallet/WalletService";
 
 import { useEffect, useState } from "react";
@@ -12,6 +13,9 @@ export default function CreatePage() {
     const [songLink, setSongLink] = useState('');
     const [presaleCode, setPresaleCode] = useState('');
     const [tokenContract, setTokenContract] = useState(''); 
+    const [address, setAddress] = useState('');
+    const [ticketLink, setTicketLink] = useState('');
+    const [songName, setSongName] = useState('');
  
     useEffect(() => {
         const fetchUserStatus = async () => {
@@ -25,17 +29,33 @@ export default function CreatePage() {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault(); // This prevents the page from refreshing when you submit the form
-    console.log(await getCurrentWalletAddress());
 
-    const data: TestModel = {
-        wallet_address: walletAddress,
-        song_link: songLink,
-        presale_code: presaleCode,
-        token_contract: tokenContract
+
+    const artistPage: ArtistPage = {
+        //TODO add validation to verify non null and non empty
+        wallet_address: walletAddress ? walletAddress : '',
+        token_contract: tokenContract,
     };
 
-    console.log("submitting");
-    await insertTestData(data);
+    const unreleasedMusic: UnreleasedMusic = {
+        song_name: songName,
+        song_link: songLink,
+    }
+    
+    const concertPresaleCode: ConcertPresaleCode = {
+        presale_code: presaleCode,
+        address: address,
+        ticket_link: ticketLink,
+    }
+
+    const artistPageData: ArtistPageData = {
+        artistPage: artistPage,
+        unreleasedMusic: unreleasedMusic,
+        concertPresaleCode: concertPresaleCode
+    }
+
+
+    await insertArtistPageData(artistPageData);
   };
 
 
@@ -45,6 +65,17 @@ export default function CreatePage() {
 
     return (
         <form onSubmit={handleSubmit}>
+            <div>Artist Page Configurations</div>
+            <label>
+                tokenContract: 
+                <input
+                type="text"
+                value={tokenContract}
+                onChange={(e) => setTokenContract(e.target.value)} 
+                style={{ color: 'black' }}
+                />
+            </label>
+            <div>Unreleased Music</div>
             <label>
                 songLink:
                 <input
@@ -57,6 +88,17 @@ export default function CreatePage() {
             </label>
             <br/>
             <label>
+                Song Name:
+                <input
+                type="text"
+                value={songName}
+                style={{ color: 'black' }}
+                onChange={(e) => setSongName(e.target.value)}
+                />
+            </label>
+            <br/>
+            <div>Presale Codes</div>
+            <label>
                 presaleCode:
                 <input
                 type="text"
@@ -68,15 +110,25 @@ export default function CreatePage() {
             </label>
             <br/>
             <label>
-                tokenContract: 
+                Address:
                 <input
                 type="text"
-                value={tokenContract}
-                onChange={(e) => setTokenContract(e.target.value)} 
+                value={address}
                 style={{ color: 'black' }}
-            
+                onChange={(e) => setAddress(e.target.value)}
                 />
             </label>
+            <br/>
+            <label>
+                Ticket Link:
+                <input
+                type="text"
+                value={ticketLink}
+                style={{ color: 'black' }}
+                onChange={(e) => setTicketLink(e.target.value)}
+                />
+            </label>
+
             <br/>
             <button type="submit">Submit</button>
         </form>
