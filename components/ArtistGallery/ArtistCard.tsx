@@ -53,7 +53,7 @@ export const ArtistCard = ({ artistPage }: ArtistCardProps) => {
 						}}
 					>
 						<Avatar
-							src={artistPage.profile_image}
+							src={artistPage.profile_image || ''}
 							sx={{ margin: 'auto', width: 100, height: 100 }}
 						/>
 						<Typography
