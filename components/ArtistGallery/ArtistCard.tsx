@@ -63,13 +63,6 @@ export const ArtistCard = ({ artistPage }: ArtistCardProps) => {
 						>
 							{artistPage.page_name}
 						</Typography>
-						<Typography
-							variant="h5"
-							component="div"
-							sx={{ color: 'white' }}
-						>
-							Created {displayDate}
-						</Typography>
 					</Box>
 				</CardContent>
 				<Box
