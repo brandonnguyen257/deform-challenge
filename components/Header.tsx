@@ -5,6 +5,16 @@ import { useRouter } from 'next/navigation';
 
 export default function Header() {
 	const router = useRouter();
+	const buttonStyles = {
+		color: 'white',
+		borderColor: 'white',
+
+		'&:hover': {
+			transform: 'scale(1.05)',
+			boxShadow: '0 0 10px rgba(255, 255, 255, 0.5)'
+		},
+		transition: 'transform 0.2s ease-in-out, boxShadow 0.2s ease-in-out'
+	};
 
 	return (
 		<ButtonGroup
@@ -16,11 +26,19 @@ export default function Header() {
 				left: 0 // Position it at the left
 			}}
 		>
-			<Button onClick={() => router.push('/')}>Home</Button>
-			<Button onClick={() => router.push('/artist-gallery')}>
+			<Button onClick={() => router.push('/')} sx={buttonStyles}>
+				Home
+			</Button>
+			<Button
+				onClick={() => router.push('/artist-gallery')}
+				sx={buttonStyles}
+			>
 				Gallery
 			</Button>
-			<Button onClick={() => router.push('/create-page')}>
+			<Button
+				onClick={() => router.push('/create-page')}
+				sx={buttonStyles}
+			>
 				Create page
 			</Button>
 		</ButtonGroup>

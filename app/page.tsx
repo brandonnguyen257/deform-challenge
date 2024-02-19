@@ -4,6 +4,8 @@ import Link from 'next/link';
 import ConnectWallet from '@/components/HomePage/ConnectWallet';
 import SessionInformation from '@/components/HomePage/SessionInformation';
 import CurrentNfts from '@/components/HomePage/CurrentNfts';
+import { HomePageCard } from '@/components/HomePage/HomePageCard';
+import { Box, Container } from '@mui/material';
 
 export default async function Index() {
 	// const canInitSupabaseClient = () => {
@@ -20,24 +22,35 @@ export default async function Index() {
 	// const isSupabaseConnected = canInitSupabaseClient();
 
 	return (
-		<div>
-			<Link href="/artist-gallery">Artist Gallery</Link>
-			<br />
-			<Link href="/create-page">Create Artist Page</Link>
-			<br />
-			<br />
-			<br />
-			<ConnectWallet />
-			{/* <div><button id='siweBtn'>Sign-in with Ethereum</button></div> */}
-			<br />
-			<br />
-			<br />
-			<br />
+		<Container>
+			<Box
+				sx={{
+					display: 'flex',
+					flexDirection: 'row',
+					justifyContent: 'space-between',
+					gap: '10px'
+				}}
+			>
+				<HomePageCard
+					cardTitleText="Artist Gallery"
+					hrefLink="/artist-gallery"
+				/>
+				<HomePageCard
+					cardTitleText="Create A Page"
+					hrefLink="/create-page"
+				/>
+				<HomePageCard cardTitleText="Analytics" hrefLink="/" />
+			</Box>
 
-			<SessionInformation />
-			<br />
-
-			<CurrentNfts />
-		</div>
+			<Box
+				sx={{
+					display: 'flex',
+					justifyContent: 'center',
+					marginTop: '20px'
+				}}
+			>
+				<ConnectWallet />
+			</Box>
+		</Container>
 	);
 }

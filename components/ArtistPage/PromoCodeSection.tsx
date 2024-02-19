@@ -22,7 +22,7 @@ export const PromoCodeSection = ({
 						alignItems: 'center'
 					}}
 				>
-					<CardTitle text="Promo Code" />
+					<CardTitle text="Presale Code" />
 					<ArtistPageCardImage />
 					<Typography variant="h4" style={{ color: 'white' }}>
 						{concertPresaleCode.venue}

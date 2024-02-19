@@ -1,6 +1,8 @@
 'use client';
+import { Button } from '@mui/material';
 import { BrowserProvider } from 'ethers';
 import { useState } from 'react';
+import { SubmitButtonSx } from '../CreatePage/StylingConfig';
 
 export default function ConnectWallet() {
 	const [connecting, setConnecting] = useState(false);
@@ -24,5 +26,18 @@ export default function ConnectWallet() {
 			});
 	};
 
-	return <button onClick={handleClick}>Connect Wallet</button>;
+	return (
+		<Button
+			variant="outlined"
+			onClick={handleClick}
+			sx={{
+				...SubmitButtonSx,
+				fontSize: '20px',
+				padding: '20px',
+				minWidth: '200px'
+			}}
+		>
+			Connect Wallet
+		</Button>
+	);
 }
