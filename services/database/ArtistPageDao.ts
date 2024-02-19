@@ -68,6 +68,14 @@ export const getArtistPageData = async (pageId: number) => {
 		console.error('Error fetching data: ', error);
 		return ;
 	}
+	//This returns a list, but right now treat it as a 1:1 relationship
+	//Omit time clicked columns since that is "private" data for the artist
+	const { times_song_link_clicked
+		, ...unreleasedMusic } = data.unreleased_music[0];
+
+	
+	const { times_ticket_link_clicked
+		, ...concertPresaleCode } = data.concert_presale_code[0];
 
 	const transformedData: ArtistPageData = {
 		artistPage: {
@@ -78,9 +86,8 @@ export const getArtistPageData = async (pageId: number) => {
             page_name: data.page_name,
 			profile_image: data.profile_image
 		},
-		//This returns a list, but right now treat it as a 1:1 relationship
-		unreleasedMusic: data.unreleased_music[0],
-		concertPresaleCode: data.concert_presale_code[0]
+		unreleasedMusic: unreleasedMusic,
+		concertPresaleCode: concertPresaleCode
 	};
 
 	return transformedData;
@@ -99,7 +106,6 @@ export const getAllArtistPages = async () => {
 
 
 export const getMyArtistPages = async (walletAddress: string|undefined|null) => {
-	console.log(walletAddress);
 	const { data, error } = await supabase
 	.from('artist_page')
 	.select()
@@ -110,7 +116,18 @@ export const getMyArtistPages = async (walletAddress: string|undefined|null) => 
 		return [];
 	}
 
-	console.log(data);
 	return data as ArtistPage[];
+}
+
+export const hasAccessToPage = async (walletAddress: string|undefined|null) => {
+
+	const { data, error } = await supabase
+	.from('artist_page')
+	.select()
+	.eq('wallet_address', walletAddress);
+
+	if (error) {
+		console.error('Error fetching data: ', error);
+	}
 
 }
