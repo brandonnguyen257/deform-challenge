@@ -15,7 +15,7 @@ import { useEffect, useState } from 'react';
 import { ArtistPageSection } from '@/components/CreatePage/ArtistPageSection';
 import { UnreleasedMusicSection } from '@/components/CreatePage/UnreleasedMusicSection';
 import { ConcertPresaleCodeSection } from '@/components/CreatePage/ConcertPresaleCodeSection';
-import { Box, Button, Container, Typography } from '@mui/material';
+import { Button, Container, Typography } from '@mui/material';
 import { SubmitButtonSx } from '@/components/CreatePage/StylingConfig';
 
 export default function CreatePage() {
@@ -24,10 +24,6 @@ export default function CreatePage() {
 
 	const [isLoggedIn, setIsLoggedIn] = useState<boolean>();
 	const [walletAddress, setWalletAddress] = useState<string | null>();
-
-	const [presaleCode, setPresaleCode] = useState('');
-	const [venue, setVenue] = useState('');
-	const [ticketLink, setTicketLink] = useState('');
 
 	const [artistPage, setArtistPage] = useState<ArtistPage>({
 		wallet_address: walletAddress ? walletAddress : '',

@@ -1,13 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getContractMetadata } from '@/services/wallet/WalletService';
 import { NftContract } from 'alchemy-sdk';
-import {
-	Box,
-	Button,
-	CircularProgress,
-	Modal,
-	Typography
-} from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { Warning } from '@mui/icons-material';
 import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded';
 import { useRouter } from 'next/navigation';
@@ -95,7 +89,7 @@ export default function UnauthorizedContractAccess({
 						onClick={onArtistGalleryClick}
 						sx={{
 							'&:hover': {
-								transform: 'scale(1.1)' // Make the button 10% bigger on hover
+								transform: 'scale(1.1)'
 							}
 						}}
 					>

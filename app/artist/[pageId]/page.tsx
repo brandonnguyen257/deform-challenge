@@ -11,7 +11,7 @@ import {
 	getCurrentWalletAddress,
 	hasAccessToPage
 } from '@/services/wallet/WalletService';
-import { Card, CardContent, Container, Grid, Typography } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 

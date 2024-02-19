@@ -1,6 +1,5 @@
 'use client';
 import { Button, ButtonGroup } from '@mui/material';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 export default function Header() {
@@ -21,9 +20,9 @@ export default function Header() {
 			variant="outlined"
 			aria-label="Basic button group"
 			sx={{
-				position: 'absolute', // Position the ButtonGroup absolutely
-				top: 0, // Position it at the top
-				left: 0 // Position it at the left
+				position: 'absolute',
+				top: 0,
+				left: 0
 			}}
 		>
 			<Button onClick={() => router.push('/')} sx={buttonStyles}>

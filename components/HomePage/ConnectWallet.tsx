@@ -9,14 +9,12 @@ export default function ConnectWallet() {
 
 	const handleClick = async () => {
 		if (connecting) {
-			console.log('Connection in progress. Please wait.');
 			return;
 		}
 		setConnecting(true);
 
 		const provider = new BrowserProvider((window as any).ethereum);
 
-		console.log('Connecting To Wallet');
 		await provider
 			.send('eth_requestAccounts', [])
 			.then(() => setConnecting(false))
