@@ -21,7 +21,7 @@ export default async function Index() {
 					cardTitleText="Create A Page"
 					hrefLink="/create-page"
 				/>
-				<HomePageCard cardTitleText="Analytics" hrefLink="/my-pages" />
+				<HomePageCard cardTitleText="My Pages" hrefLink="/my-pages" />
 			</Box>
 
 			<Box

@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 
 interface ArtistCardProps {
 	artistPage: ArtistPage;
+	onClickEndpointRoute?: string;
 }
 
 const ArtistCardSx = {
@@ -27,7 +28,10 @@ const ArtistCardSx = {
 	},
 	transition: 'transform 0.2s ease-in-out, boxShadow 0.2s ease-in-out'
 };
-export const ArtistCard = ({ artistPage }: ArtistCardProps) => {
+export const ArtistCard = ({
+	artistPage,
+	onClickEndpointRoute
+}: ArtistCardProps) => {
 	const router = useRouter();
 
 	const displayDate = artistPage?.created_at
@@ -35,7 +39,7 @@ export const ArtistCard = ({ artistPage }: ArtistCardProps) => {
 		: '';
 
 	const onCardClick = () => {
-		router.push(`/artist/${artistPage.id}`);
+		router.push(`${onClickEndpointRoute}/${artistPage.id}`);
 	};
 	return (
 		<ButtonBase

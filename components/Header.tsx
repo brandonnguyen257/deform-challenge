@@ -40,6 +40,9 @@ export default function Header() {
 			>
 				Create page
 			</Button>
+			<Button onClick={() => router.push('/my-pages')} sx={buttonStyles}>
+				My Pages
+			</Button>
 		</ButtonGroup>
 	);
 }

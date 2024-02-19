@@ -29,7 +29,10 @@ export default function ArtistGallery() {
 			<Grid container spacing={3}>
 				{artistPages.map((artist, index) => (
 					<Grid item xs={12} sm={6} md={6} lg={4} key={index}>
-						<ArtistCard artistPage={artist} />
+						<ArtistCard
+							artistPage={artist}
+							onClickEndpointRoute="/artist"
+						/>
 					</Grid>
 				))}
 			</Grid>
