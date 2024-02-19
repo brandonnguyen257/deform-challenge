@@ -74,9 +74,8 @@ const Page = () => {
 			{artistPageData?.artistPage && (
 				<ArtistPageSection artistPage={artistPageData?.artistPage} />
 			)}
-			<Grid container spacing={1}>
+			<Grid sx={{ flexGrow: 1 }} container spacing={1}>
 				<UnreleasedMusicSection />
-
 				<PromoCodeSection />
 			</Grid>
 		</Container>

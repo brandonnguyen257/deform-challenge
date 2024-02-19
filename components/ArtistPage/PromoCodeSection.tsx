@@ -1,12 +1,12 @@
 import { Card, CardContent, Typography } from '@mui/material';
 import { CARD_STYLE } from './ArtistPageStylingConfig';
+import { CardTitle } from './CardTitle';
 
 export const PromoCodeSection = () => {
 	return (
 		<Card sx={CARD_STYLE}>
 			<CardContent>
-				<Typography variant="h5">Promo Code</Typography>
-				{/* Add more card content here */}
+				<CardTitle text="Promo Code" />
 			</CardContent>
 		</Card>
 	);

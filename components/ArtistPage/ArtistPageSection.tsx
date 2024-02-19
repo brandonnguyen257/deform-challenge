@@ -28,7 +28,7 @@ export const ArtistPageSection = ({ artistPage }: ArtistPageSectionProps) => {
 						sx={{ margin: 'auto', width: 300, height: 300 }}
 					/>
 					<Typography
-						variant="h3"
+						variant="h1"
 						component="div"
 						sx={{ color: 'white' }}
 					>
