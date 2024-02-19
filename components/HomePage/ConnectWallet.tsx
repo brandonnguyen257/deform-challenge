@@ -19,7 +19,6 @@ export default function ConnectWallet() {
 			.send('eth_requestAccounts', [])
 			.then(() => setConnecting(false))
 			.catch((error) => {
-				console.log('user rejected request');
 				setConnecting(false);
 			});
 	};

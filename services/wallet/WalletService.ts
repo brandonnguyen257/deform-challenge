@@ -53,7 +53,6 @@ export const hasAccessToPage = async (contractAddress: string) => {
 	}
 	const nftsForOwner: OwnedNftsResponse =
 		await getNftsForOwner(walletAddress);
-	console.log(nftsForOwner.ownedNfts);
 	return nftsForOwner.ownedNfts.some(
 		(nft) => nft.contract.address === contractAddress
 	);
