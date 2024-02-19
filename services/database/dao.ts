@@ -77,6 +77,7 @@ export const getArtistPageData = async (pageId: number) => {
 			token_contract: data.token_contract,
 			created_at: data.created_at,
             page_name: data.page_name,
+			profile_image: data.profile_image
 		},
 		//This returns a list, but right now treat it as a 1:1 relationship
 		unreleasedMusic: data.unreleased_music[0],

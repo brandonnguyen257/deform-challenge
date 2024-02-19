@@ -3,7 +3,7 @@ export type ArtistPage = {
 	wallet_address: string;
 	token_contract: string;
 	page_name: string;
-	profile_image?: string;
+	profile_image?: string| null;
 	created_at?: Date;
 };
 

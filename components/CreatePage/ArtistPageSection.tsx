@@ -1,9 +1,10 @@
 'use client';
 
 import { ArtistPage } from '@/services/model/Models';
-import { Box, TextField, Typography } from '@mui/material';
+import { Box, Button, TextField, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { CreatePageTextFieldSx } from './StylingConfig';
+import { uploadProfileImage } from '@/services/storage/ProfileImageStorage';
 
 interface ArtistPageSectionProps {
 	artistPage: ArtistPage;
@@ -21,6 +22,17 @@ export const ArtistPageSection: React.FC<ArtistPageSectionProps> = ({
 	const handleInputChange = (key: keyof ArtistPage, value: string) => {
 		const updatedArtistPage = { ...artistPage, [key]: value };
 		setArtistPage(updatedArtistPage);
+	};
+
+	const handleFileUpload = async (event: { target: { files: any[] } }) => {
+		console.log(artistPage.wallet_address);
+		const imageURL = await uploadProfileImage(
+			event.target.files[0],
+			artistPage.wallet_address
+		);
+		const updatedArtistPage = { ...artistPage, profile_image: imageURL };
+		setArtistPage(updatedArtistPage);
+		console.log(artistPage);
 	};
 
 	return (
@@ -102,6 +114,20 @@ export const ArtistPageSection: React.FC<ArtistPageSectionProps> = ({
 						sx={{ ...CreatePageTextFieldSx, width: '50%' }}
 					/>
 				</Box>
+				{/* <div>
+					<input
+						accept="image/*"
+						style={{ display: 'none' }}
+						id="contained-button-file"
+						type="file"
+						onChange={handleFileUpload}
+					/>
+					<label htmlFor="contained-button-file">
+						<Button variant="contained" component="span">
+							Upload
+						</Button>
+					</label>
+				</div> */}
 			</Box>
 		</>
 	);
