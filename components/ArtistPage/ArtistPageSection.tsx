@@ -24,7 +24,7 @@ export const ArtistPageSection = ({ artistPage }: ArtistPageSectionProps) => {
 					}}
 				>
 					<Avatar
-						src={artistPage.profile_image}
+						src={artistPage.profile_image || ''}
 						sx={{ margin: 'auto', width: 300, height: 300 }}
 					/>
 					<Typography
