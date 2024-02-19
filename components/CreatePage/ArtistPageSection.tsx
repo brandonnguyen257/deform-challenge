@@ -25,14 +25,12 @@ export const ArtistPageSection: React.FC<ArtistPageSectionProps> = ({
 	};
 
 	const handleFileUpload = async (event: { target: { files: any[] } }) => {
-		console.log(artistPage.wallet_address);
 		const imageURL = await uploadProfileImage(
 			event.target.files[0],
 			artistPage.wallet_address
 		);
 		const updatedArtistPage = { ...artistPage, profile_image: imageURL };
 		setArtistPage(updatedArtistPage);
-		console.log(artistPage);
 	};
 
 	return (

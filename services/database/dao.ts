@@ -45,7 +45,6 @@ export const insertArtistPageData = async (data: ArtistPageData) => {
 		);
 		return;
 	}
-	console.log('Data inserted successfully');
 };
 
 export const getArtistPageData = async (pageId: number) => {
@@ -84,7 +83,6 @@ export const getArtistPageData = async (pageId: number) => {
 		concertPresaleCode: data.concert_presale_code[0]
 	};
 
-	console.log(transformedData)
 	return transformedData;
 };
 
