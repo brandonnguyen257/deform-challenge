@@ -3,6 +3,7 @@ import { CARD_STYLE } from './ArtistPageStylingConfig';
 import { CardTitle } from './CardTitle';
 import { ArtistPageCardImage } from './ArtistPageCardImage';
 import { ConcertPresaleCode } from '@/services/model/Models';
+import { incrementTicketLinkClicked } from '@/services/database/ConcertPresaleCodeDao';
 
 interface PromoCodeSectionProps {
 	concertPresaleCode: ConcertPresaleCode;
@@ -11,6 +12,11 @@ interface PromoCodeSectionProps {
 export const PromoCodeSection = ({
 	concertPresaleCode
 }: PromoCodeSectionProps) => {
+	const onLinkClick = async () => {
+
+        await incrementTicketLinkClicked(concertPresaleCode.id);
+	};
+
 	return (
 		<Card sx={CARD_STYLE}>
 			<CardContent>
@@ -35,6 +41,7 @@ export const PromoCodeSection = ({
 						target="_blank"
 						rel="noreferrer"
 						variant="h4"
+						onClick={onLinkClick}
 					>
 						Ticket Link
 					</Link>

@@ -21,6 +21,7 @@ export type ConcertPresaleCode = {
 	presale_code: string;
 	venue: string;
 	ticket_link: string;
+	times_ticket_link_clicked?: number;
 	created_at?: Date;
 };
 
