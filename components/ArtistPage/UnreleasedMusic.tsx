@@ -1,15 +1,11 @@
-import {
-	Box,
-	Button,
-	Card,
-	CardContent,
-	Link,
-	Typography
-} from '@mui/material';
+'use client';
+
+import { Box, Card, CardContent, Link, Typography } from '@mui/material';
 import { CARD_STYLE } from './ArtistPageStylingConfig';
 import { CardTitle } from './CardTitle';
 import { ArtistPageCardImage } from './ArtistPageCardImage';
 import { UnreleasedMusic } from '@/services/model/Models';
+import { incrementSongLinkClicked } from '@/services/database/UnreleasedMusicDao';
 
 interface UnreleasedMusicSectionProps {
 	unreleasedMusic: UnreleasedMusic;
@@ -18,6 +14,9 @@ interface UnreleasedMusicSectionProps {
 export const UnreleasedMusicSection = ({
 	unreleasedMusic
 }: UnreleasedMusicSectionProps) => {
+	const onLinkClick = async () => {
+		await incrementSongLinkClicked(unreleasedMusic.id);
+	};
 	return (
 		<Card sx={CARD_STYLE}>
 			<CardContent>
@@ -39,6 +38,7 @@ export const UnreleasedMusicSection = ({
 						target="_blank"
 						rel="noreferrer"
 						variant="h4"
+                        onClick={onLinkClick}
 					>
 						Download Link
 					</Link>

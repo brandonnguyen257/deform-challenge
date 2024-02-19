@@ -13,6 +13,7 @@ export type UnreleasedMusic = {
 	song_name: string;
 	song_link: string;
 	created_at?: Date;
+	times_ticket_link_clicked?: number;
 };
 
 export type ConcertPresaleCode = {
