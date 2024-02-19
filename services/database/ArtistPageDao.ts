@@ -96,3 +96,21 @@ export const getAllArtistPages = async () => {
 
 	return data as ArtistPage[];
 };
+
+
+export const getMyArtistPages = async (walletAddress: string|undefined|null) => {
+	console.log(walletAddress);
+	const { data, error } = await supabase
+	.from('artist_page')
+	.select()
+	.eq('wallet_address', walletAddress);
+
+	if (error) {
+		console.error('Error fetching data: ', error);
+		return [];
+	}
+
+	console.log(data);
+	return data as ArtistPage[];
+
+}

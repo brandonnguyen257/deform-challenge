@@ -1,4 +1,4 @@
-import { supabase } from "../database/dao";
+import { supabase } from "../database/ArtistPageDao";
 
 export const uploadProfileImage = async (file: File, walletAddress:string) => {
     console.log('Uploading profile image...');

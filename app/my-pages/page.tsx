@@ -1,23 +1,27 @@
 'use client';
 import { ArtistCard } from '@/components/ArtistGallery/ArtistCard';
 import Loading from '@/components/Loading';
-import { getAllArtistPages } from '@/services/database/ArtistPageDao';
+import { getMyArtistPages } from '@/services/database/ArtistPageDao';
 import { ArtistPage } from '@/services/model/Models';
+import { getCurrentWalletAddress } from '@/services/wallet/WalletService';
 import { Container, Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
 
-export default function ArtistGallery() {
+export default function MyArtistPages() {
 	const [artistPages, setArtistPages] = useState<ArtistPage[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
+	const [walletAddress, setWalletAddress] = useState<string | null>();
 
 	useEffect(() => {
-		const fetchArtistPages = async () => {
-			const data = await getAllArtistPages();
+		const fetchMyArtistPages = async () => {
+			const walletAddress = await getCurrentWalletAddress();
+			setWalletAddress(walletAddress);
+			const data = await getMyArtistPages(walletAddress);
 			setArtistPages(data);
 			setIsLoading(false);
 		};
 
-		fetchArtistPages();
+		fetchMyArtistPages();
 	}, []);
 
 	if (isLoading) {

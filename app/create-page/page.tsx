@@ -1,6 +1,6 @@
 'use client';
 import UnauthenticatedUserWarning from '@/components/Warnings/UnauthenticatedUserWarning';
-import { insertArtistPageData } from '@/services/database/dao';
+import { insertArtistPageData } from '@/services/database/ArtistPageDao';
 import {
 	ArtistPage,
 	ArtistPageData,

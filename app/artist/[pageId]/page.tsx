@@ -5,7 +5,7 @@ import { UnreleasedMusicSection } from '@/components/ArtistPage/UnreleasedMusic'
 import Loading from '@/components/Loading';
 import UnauthenticatedUserWarning from '@/components/Warnings/UnauthenticatedUserWarning';
 import UnauthorizedContractAccess from '@/components/Warnings/UnauthroizedContractAccess';
-import { getArtistPageData } from '@/services/database/dao';
+import { getArtistPageData } from '@/services/database/ArtistPageDao';
 import { ArtistPageData } from '@/services/model/Models';
 import {
 	getCurrentWalletAddress,

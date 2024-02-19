@@ -1,4 +1,4 @@
-import { supabase } from './dao';
+import { supabase } from './ArtistPageDao';
 
 //TODO: There is a chance 2 people grab the same value and one count will be missed
 //Solution is to create a database function that grabs the value and increments it in 1 transaction

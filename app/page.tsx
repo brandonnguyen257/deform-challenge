@@ -3,7 +3,6 @@ import { HomePageCard } from '@/components/HomePage/HomePageCard';
 import { Box, Container } from '@mui/material';
 
 export default async function Index() {
-
 	return (
 		<Container>
 			<Box
@@ -22,7 +21,7 @@ export default async function Index() {
 					cardTitleText="Create A Page"
 					hrefLink="/create-page"
 				/>
-				<HomePageCard cardTitleText="Analytics" hrefLink="/" />
+				<HomePageCard cardTitleText="Analytics" hrefLink="/my-pages" />
 			</Box>
 
 			<Box
