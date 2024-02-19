@@ -8,7 +8,11 @@ interface ArtistPageCardImageProps {
 export const ArtistPageCardImage: React.FC<ArtistPageCardImageProps> = ({
 	src
 }) => {
+	// <Avatar src={src} sx={{ margin: 'auto', width: 200, height: 200 }} />;
+
 	return (
-		<Avatar src={src} sx={{ margin: 'auto', width: 200, height: 200 }} />
+		<svg height="200" width="200" style={{ margin: 'auto' }}>
+			<circle cx="100" cy="100" r="80" stroke="darkgray" fill="gray" />
+		</svg>
 	);
 };

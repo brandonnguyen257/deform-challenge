@@ -45,7 +45,6 @@ const Page = () => {
 			);
 			setHasAccess(hasAccess);
 			setIsPageLoading(false);
-			await getArtistPageData(pageId);
 			setIsOwner(data?.artistPage.wallet_address === walletAddress);
 		};
 
@@ -75,7 +74,12 @@ const Page = () => {
 				<ArtistPageSection artistPage={artistPageData?.artistPage} />
 			)}
 			<Grid sx={{ flexGrow: 1 }} container spacing={1}>
-				<UnreleasedMusicSection />
+				{artistPageData?.unreleasedMusic && (
+					<UnreleasedMusicSection
+						unreleasedMusic={artistPageData?.unreleasedMusic}
+					/>
+				)}
+
 				<PromoCodeSection />
 			</Grid>
 		</Container>

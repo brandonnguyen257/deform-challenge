@@ -67,7 +67,7 @@ export const getArtistPageData = async (pageId: number) => {
 
 	if (error) {
 		console.error('Error fetching data: ', error);
-		return;
+		return ;
 	}
 
 	const transformedData: ArtistPageData = {
@@ -78,10 +78,12 @@ export const getArtistPageData = async (pageId: number) => {
 			created_at: data.created_at,
             page_name: data.page_name,
 		},
-		unreleasedMusic: data.unreleased_music,
-		concertPresaleCode: data.concert_presale_code
+		//This returns a list, but right now treat it as a 1:1 relationship
+		unreleasedMusic: data.unreleased_music[0],
+		concertPresaleCode: data.concert_presale_code[0]
 	};
 
+	console.log(transformedData)
 	return transformedData;
 };
 
