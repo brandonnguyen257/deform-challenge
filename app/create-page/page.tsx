@@ -28,8 +28,8 @@ export default function CreatePage() {
 	const [artistPage, setArtistPage] = useState<ArtistPage>({
 		wallet_address: walletAddress ? walletAddress : '',
 		token_contract: '',
-		page_name: ''
-		// profile_image: ''
+		page_name: '',
+		profile_image: ''
 	});
 	const [unreleasedMusic, setUnreleasedMusic] = useState<UnreleasedMusic>({
 		song_name: '',
