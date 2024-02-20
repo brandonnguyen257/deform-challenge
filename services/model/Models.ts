@@ -31,3 +31,8 @@ export type ArtistPageData = {
 	unreleasedMusic: UnreleasedMusic;
 	concertPresaleCode: ConcertPresaleCode;
 };
+
+export type ArtistPageAnalytics = {
+	timesSongLinkClicked: number;
+	timesTicketLinkClicked: number;
+}
