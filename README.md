@@ -11,3 +11,19 @@ https://goerli.etherscan.io/token/0xa87d30b1d97523b8aeaa170a57126fa1c1d46196
 
 Link To Diagrams
 https://app.eraser.io/workspace/FGhPgkeBAG5XJLsa6dU9?origin=share
+
+
+Code structure
+App
+  This contains all of the page routes (/artist, /create-page, etc)
+Components
+  This contains all the components used for the pages
+Services
+  Database
+    This contains all the queries to the database
+  Model
+    This contains all the models used for the app
+  Storage
+    This contains all the queries for file storage
+  Wallet
+    This contains all the web3 related queries using Alchemy or ethers
