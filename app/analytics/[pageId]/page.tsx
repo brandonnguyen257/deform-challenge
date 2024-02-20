@@ -65,7 +65,9 @@ export default function AnalyticsPage() {
 	};
 	return (
 		<Container>
-			<ArtistPageSection artistPage={artistPageData?.artistPage} />
+			{artistPageData?.artistPage && (
+				<ArtistPageSection artistPage={artistPageData?.artistPage} />
+			)}
 			<Typography variant="h3" color="white" sx={{ textAlign: 'center' }}>
 				Analytics
 			</Typography>
